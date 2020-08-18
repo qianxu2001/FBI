@@ -135,8 +135,8 @@ static void extsavedata_options_update(ui_view* view, void* data, linked_list* i
     }
 
     if(linked_list_size(items) == 0) {
-        extsavedata_options_add_entry(items, "显示来自 SD", &listData->showSD);
-        extsavedata_options_add_entry(items, "显示来自 NAND", &listData->showNAND);
+        extsavedata_options_add_entry(items, "显示 SD 卡中的数据", &listData->showSD);
+        extsavedata_options_add_entry(items, "显示 NAND 中的数据", &listData->showNAND);
         extsavedata_options_add_entry(items, "按 ID 排序", &listData->sortById);
         extsavedata_options_add_entry(items, "按名称排序", &listData->sortByName);
     }
@@ -188,7 +188,7 @@ static void extsavedata_update(ui_view* view, void* data, linked_list* items, li
         listData->populateData.items = items;
         Result res = task_populate_ext_save_data(&listData->populateData);
         if(R_FAILED(res)) {
-            error_display_res(NULL, NULL, res, "无法初始化额外数据列表总数。");
+            error_display_res(NULL, NULL, res, "无法初始化额外数据列表的总数。");
         }
 
         listData->populated = true;
