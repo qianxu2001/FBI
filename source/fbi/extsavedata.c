@@ -77,7 +77,7 @@ static void extsavedata_action_open(linked_list* items, list_item* selected) {
     data->items = items;
     data->selected = selected;
 
-    list_display("额外数据操作", "A: 选择, B: 返回", data, extsavedata_action_update, extsavedata_action_draw_top);
+    list_display("额外数据操作", "A：选择, B：返回", data, extsavedata_action_update, extsavedata_action_draw_top);
 }
 
 static void extsavedata_options_add_entry(linked_list* items, const char* name, bool* val) {
@@ -143,7 +143,7 @@ static void extsavedata_options_update(ui_view* view, void* data, linked_list* i
 }
 
 static void extsavedata_options_open(extsavedata_data* data) {
-    list_display("选项", "A: 切换, B: 返回", data, extsavedata_options_update, NULL);
+    list_display("选项", "A：切换, B：返回", data, extsavedata_options_update, NULL);
 }
 
 static void extsavedata_draw_top(ui_view* view, void* data, float x1, float y1, float x2, float y2, list_item* selected) {
@@ -271,5 +271,5 @@ void extsavedata_open() {
     data->sortById = false;
     data->sortByName = true;
 
-    list_display("额外数据", "A: 选择, B: 返回, X: 刷新, Select: 选项", data, extsavedata_update, extsavedata_draw_top);
+    list_display("额外数据", "A：选择, B：返回, X：刷新, Select：选项", data, extsavedata_update, extsavedata_draw_top);
 }
