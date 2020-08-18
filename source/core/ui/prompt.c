@@ -75,12 +75,12 @@ static void prompt_draw_top(ui_view* view, void* data, float x1, float y1, float
 static const char* button_strings[32] = {
         "A",
         "B",
-        "Select",
-        "Start",
-        "D-Pad Right",
-        "D-Pad Left",
-        "D-Pad Up",
-        "D-Pad Down",
+        "SELECT",
+        "START",
+        "方向键 右",
+        "方向键 左",
+        "方向键 上",
+        "方向键 下",
         "R",
         "L",
         "X",
@@ -97,14 +97,14 @@ static const char* button_strings[32] = {
         "",
         "",
         "",
-        "C-Stick Right",
-        "C-Stick Left",
-        "C-Stick Up",
-        "C-Stick Down",
-        "Circle Pad Right",
-        "Circle Pad Left",
-        "Circle Pad Up",
-        "Circle Pad Down"
+        "C 摇杆 右",
+        "C 摇杆 左",
+        "C 摇杆 上",
+        "C 摇杆 下",
+        "摇杆 右",
+        "摇杆 左",
+        "摇杆 上",
+        "摇杆 下"
 };
 
 static void prompt_button_to_string(char* out, size_t size, u32 button) {
@@ -158,7 +158,7 @@ ui_view* prompt_display_multi_choice(const char* name, const char* text, u32 col
                                                                                                                                                           void (*onResponse)(ui_view* view, void* data, u32 response)) {
     prompt_data* promptData = (prompt_data*) calloc(1, sizeof(prompt_data));
     if(promptData == NULL) {
-        error_display(NULL, NULL, "无法分配提示数据。");
+        error_display(NULL, NULL, "无法分配提示数据.");
 
         return NULL;
     }
