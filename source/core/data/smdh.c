@@ -13,7 +13,7 @@ static const char* smdh_region_strings[SMDH_NUM_REGIONS] = {
         "美国",
         "欧洲",
         "澳大利亚",
-        "中国",
+        "中国神游",
         "韩国",
         "中国台湾"
 };
