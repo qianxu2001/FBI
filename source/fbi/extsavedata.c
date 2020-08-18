@@ -271,5 +271,5 @@ void extsavedata_open() {
     data->sortById = false;
     data->sortByName = true;
 
-    list_display("额外数据", "A: 选择, B: 返回, X: 刷新, Select: 选项", data, extsavedata_update, extsavedata_draw_top);
+    list_display("额外数据", "A: 选择, B: 返回, X: 刷新, SELECT: 选项", data, extsavedata_update, extsavedata_draw_top);
 }
