@@ -67,8 +67,8 @@ void task_draw_ext_save_data_info(ui_view* view, void* data, float x1, float y1,
     char infoText[512];
 
     snprintf(infoText, sizeof(infoText),
-             "额外数据 ID：%016llX\n"
-                     "共享：%s",
+             "额外数据 ID: %016llX\n"
+                     "共享: %s",
              info->extSaveDataId,
              info->shared ? "是" : "否");
 
@@ -87,12 +87,12 @@ void task_draw_file_info(ui_view* view, void* data, float x1, float y1, float x2
     size_t infoTextPos = 0;
 
     if(strlen(info->name) > 48) {
-        infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "名称：%.45s...\n", info->name);
+        infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "名称: %.45s...\n", info->name);
     } else {
-        infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "名称：%.48s\n", info->name);
+        infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "名称: %.48s\n", info->name);
     }
 
-    infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "属性：");
+    infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "属性: ");
 
     if(info->attributes & (FS_ATTRIBUTE_DIRECTORY | FS_ATTRIBUTE_HIDDEN | FS_ATTRIBUTE_ARCHIVE | FS_ATTRIBUTE_READ_ONLY)) {
         bool needsSeparator = false;
@@ -104,16 +104,16 @@ void task_draw_file_info(ui_view* view, void* data, float x1, float y1, float x2
 
         if(info->attributes & FS_ATTRIBUTE_HIDDEN) {
             if(needsSeparator) {
-                infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "，");
+                infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, ", ");
             }
 
-            infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "隐藏文件（夹）");
+            infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "隐藏文件(夹)");
             needsSeparator = true;
         }
 
         if(info->attributes & FS_ATTRIBUTE_ARCHIVE) {
             if(needsSeparator) {
-                infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "，");
+                infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, ", ");
             }
 
             infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "文件");
@@ -135,7 +135,7 @@ void task_draw_file_info(ui_view* view, void* data, float x1, float y1, float x2
     infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "\n");
 
     if(!(info->attributes & FS_ATTRIBUTE_DIRECTORY)) {
-        infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "大小：%.2f %s\n",
+        infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "大小: %.2f %s\n",
                                 ui_get_display_size(info->size), ui_get_display_size_units(info->size));
 
         if(info->isCia && info->ciaInfo.loaded) {
@@ -150,17 +150,17 @@ void task_draw_file_info(ui_view* view, void* data, float x1, float y1, float x2
             }
 
             infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos,
-                                    "Title ID：%016llX\n"
-                                            "版本：%hu (%d.%d.%d)\n"
-                                            "区域：%s\n"
-                                            "安装后大小：%.2f %s",
+                                    "Title ID: %016llX\n"
+                                            "版本: %hu (%d.%d.%d)\n"
+                                            "区域: %s\n"
+                                            "安装后大小: %.2f %s",
                                     info->ciaInfo.titleId,
                                     info->ciaInfo.version, (info->ciaInfo.version >> 10) & 0x3F, (info->ciaInfo.version >> 4) & 0x3F, info->ciaInfo.version & 0xF,
                                     regionString,
                                     ui_get_display_size(info->ciaInfo.installedSize),
                                     ui_get_display_size_units(info->ciaInfo.installedSize));
         } else if(info->isTicket && info->ticketInfo.loaded) {
-            infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "Ticket ID：%016llX", info->ticketInfo.titleId);
+            infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "Ticket ID: %016llX", info->ticketInfo.titleId);
         }
     }
 
@@ -178,9 +178,9 @@ void task_draw_pending_title_info(ui_view* view, void* data, float x1, float y1,
     char infoText[512];
 
     snprintf(infoText, sizeof(infoText),
-             "未完成的 Title ID：%016llX\n"
-                     "位置：%s\n"
-                     "版本：%hu (%d.%d.%d)",
+             "未完成的 Title ID: %016llX\n"
+                     "位置: %s\n"
+                     "版本: %hu (%d.%d.%d)",
              info->titleId,
              info->mediaType == MEDIATYPE_NAND ? "NAND" : info->mediaType == MEDIATYPE_SD ? "SD 卡" : "游戏卡带",
              info->version, (info->version >> 10) & 0x3F, (info->version >> 4) & 0x3F, info->version & 0xF);
@@ -198,7 +198,7 @@ void task_draw_system_save_data_info(ui_view* view, void* data, float x1, float 
 
     char infoText[512];
 
-    snprintf(infoText, sizeof(infoText), "系统数据 ID：%08lX", info->systemSaveDataId);
+    snprintf(infoText, sizeof(infoText), "系统数据 ID: %08lX", info->systemSaveDataId);
 
     float infoWidth;
     screen_get_string_size(&infoWidth, NULL, infoText, 0.5f, 0.5f);
@@ -214,7 +214,7 @@ void task_draw_ticket_info(ui_view* view, void* data, float x1, float y1, float 
     if(info->loaded) {
         char infoText[512];
 
-        snprintf(infoText, sizeof(infoText), "Title ID：%016llX", info->titleId);
+        snprintf(infoText, sizeof(infoText), "Title ID: %016llX", info->titleId);
 
         float infoWidth;
         screen_get_string_size(&infoWidth, NULL, infoText, 0.5f, 0.5f);
@@ -241,12 +241,12 @@ void task_draw_title_info(ui_view* view, void* data, float x1, float y1, float x
     char infoText[512];
 
     snprintf(infoText, sizeof(infoText),
-             "Title ID：%016llX\n"
-                     "位置：%s\n"
-                     "版本：%hu (%d.%d.%d)\n"
-                     "产品代码：%s\n"
-                     "区域：%s\n"
-                     "大小：%.2f %s",
+             "Title ID: %016llX\n"
+                     "位置: %s\n"
+                     "版本: %hu (%d.%d.%d)\n"
+                     "产品代码: %s\n"
+                     "区域: %s\n"
+                     "大小: %.2f %s",
              info->titleId,
              info->mediaType == MEDIATYPE_NAND ? "NAND" : info->mediaType == MEDIATYPE_SD ? "SD 卡" : "游戏卡带",
              info->version, (info->version >> 10) & 0x3F, (info->version >> 4) & 0x3F, info->version & 0xF,
