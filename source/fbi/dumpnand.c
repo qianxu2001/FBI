@@ -164,5 +164,5 @@ void dumpnand_open() {
 
     data->finished = true;
 
-    prompt_display_yes_no("确认", "导出原始 NAND 镜像至 SD 卡？", COLOR_TEXT, data, NULL, dumpnand_onresponse);
+    prompt_display_yes_no("确认", "是否导出原始 NAND 镜像至 SD 卡？", COLOR_TEXT, data, NULL, dumpnand_onresponse);
 }
