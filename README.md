@@ -1,8 +1,8 @@
 # FBI
 
-FBI 是一个开源的 3DS 应用管理器。
+FBI 是一个开源的 3DS 应用管理器.
 
-本仓库为 FBI 的简体汉化版本，需要配合简体中文字库使用。
+本仓库为 FBI 的简体汉化版本，需要配合简体中文字库使用.
 
 原仓库: https://github.com/Steveice10/FBI
 
@@ -25,9 +25,9 @@ FBI 是一个开源的 3DS 应用管理器。
 
 ## 编译
 
- - 需要 [devkitARM](http://sourceforge.net/projects/devkitpro/files/devkitARM/) 中的 3ds-curl，3ds-zlib，和 3ds-jansson
+ - 需要 [devkitARM](http://sourceforge.net/projects/devkitpro/files/devkitARM/) 中的 3ds-curl, 3ds-zlib, 3ds-jansson
 
- - 需要 Steveice10 的 [buildtools](https://github.com/Steveice10/buildtools)
+ - 需要 [buildtools](https://github.com/Steveice10/buildtools)
 
 ```
 git clone https://github.com/Steveice10/buildtools
@@ -36,9 +36,9 @@ make
 
 ## 感谢
 
-[Steveice10](https://github.com/Steveice10)：提供源码
+[Steveice10](https://github.com/Steveice10): 提供源码
 
-[Rintim](https://github.com/Rintim)：辅助汉化
+[Rintim](https://github.com/Rintim): 辅助汉化
 
 >Banner: Originally created by [OctopusRift](http://gbatemp.net/members/octopusrift.356526/), touched up by [Apache Thunder](https://gbatemp.net/members/apache-thunder.105648/), updated for new logo by [PabloMK7](http://gbatemp.net/members/pablomk7.345712/).
 
