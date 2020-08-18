@@ -36,7 +36,7 @@ make
 
 ## 感谢
 
-感谢原作者 [Steveice10](https://github.com/Steveice10) 提供 FBI
+[Steveice10](https://github.com/Steveice10)：提供源码
 
 [Rintim](https://github.com/Rintim)：辅助汉化
 
