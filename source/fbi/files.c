@@ -23,8 +23,8 @@ static list_item install_ticket = {"安装 Ticket", COLOR_TEXT, action_install_t
 static list_item install_and_delete_ticket = {"安装并删除 Ticket", COLOR_TEXT, action_install_ticket_delete};
 
 static list_item delete_dir = {"删除", COLOR_TEXT, action_delete_dir};
-static list_item copy_all_contents = {"复制所有文件（夹）", COLOR_TEXT, NULL};
-static list_item delete_all_contents = {"删除所有文件（夹）", COLOR_TEXT, action_delete_dir_contents};
+static list_item copy_all_contents = {"复制所有文件(夹)", COLOR_TEXT, NULL};
+static list_item delete_all_contents = {"删除所有文件(夹)", COLOR_TEXT, action_delete_dir_contents};
 static list_item new_folder = {"新建文件夹", COLOR_TEXT, action_new_folder};
 
 static list_item install_all_cias = {"安装所有 CIAs", COLOR_TEXT, action_install_cias};
@@ -107,9 +107,9 @@ static void files_action_update(ui_view* view, void* data, linked_list* items, l
 
             Result res = 0;
             if(R_SUCCEEDED(res = clipboard_set_contents(actionData->parent->archive, info->path, selected == &copy_all_contents))) {
-                prompt_display_notify("成功", selected == &copy_all_contents ? "当前文件夹的所有文件（夹）已复制到剪贴板。" : (info->attributes & FS_ATTRIBUTE_DIRECTORY) ? "当前文件夹已复制到剪贴板。" : "文件已复制到剪贴板。", COLOR_TEXT, info, task_draw_file_info, NULL);
+                prompt_display_notify("成功", selected == &copy_all_contents ? "当前文件夹的所有文件(夹)已复制到剪贴板." : (info->attributes & FS_ATTRIBUTE_DIRECTORY) ? "当前文件夹已复制到剪贴板." : "文件已复制到剪贴板.", COLOR_TEXT, info, task_draw_file_info, NULL);
             } else {
-                error_display_res(info, task_draw_file_info, res, "无法复制到剪贴板。");
+                error_display_res(info, task_draw_file_info, res, "无法复制到剪贴板.");
             }
         } else if(selected == &install_all_cias || selected == &install_and_delete_all_cias || selected == &install_all_tickets || selected == &install_and_delete_all_tickets) {
             void (*filteredAction)(linked_list*, list_item*, bool (*)(void*, const char*, u32), void*) = action;
@@ -171,7 +171,7 @@ static void files_action_update(ui_view* view, void* data, linked_list* items, l
 static void files_action_open(linked_list* items, list_item* selected, files_data* parent) {
     files_action_data* data = (files_action_data*) calloc(1, sizeof(files_action_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配文件操作的数据。");
+        error_display(NULL, NULL, "无法分配文件操作的数据.");
 
         return;
     }
@@ -196,7 +196,7 @@ static void files_action_open(linked_list* items, list_item* selected, files_dat
         }
     }
 
-    list_display((((file_info*) selected->data)->attributes & FS_ATTRIBUTE_DIRECTORY) ? "文件夹操作" : "文件操作", "A：选择, B：返回", data, files_action_update, files_action_draw_top);
+    list_display((((file_info*) selected->data)->attributes & FS_ATTRIBUTE_DIRECTORY) ? "文件夹操作" : "文件操作", "A: 选择, B: 返回", data, files_action_update, files_action_draw_top);
 }
 
 static void files_options_add_entry(linked_list* items, const char* name, bool* val) {
@@ -238,7 +238,7 @@ static void files_options_update(ui_view* view, void* data, linked_list* items, 
     }
 
     if(linked_list_size(items) == 0) {
-        files_options_add_entry(items, "显示隐藏的文件（夹）", &listData->showHidden);
+        files_options_add_entry(items, "显示隐藏的文件(夹)", &listData->showHidden);
         files_options_add_entry(items, "显示文件夹", &listData->showDirectories);
         files_options_add_entry(items, "显示文件", &listData->showFiles);
         files_options_add_entry(items, "显示 CIAs", &listData->showCias);
@@ -247,7 +247,7 @@ static void files_options_update(ui_view* view, void* data, linked_list* items, 
 }
 
 static void files_options_open(files_data* data) {
-    list_display("选项", "A：切换, B：返回", data, files_options_update, NULL);
+    list_display("选项", "A: 切换, B: 返回", data, files_options_update, NULL);
 }
 
 static void files_draw_top(ui_view* view, void* data, float x1, float y1, float x2, float y2, list_item* selected) {
@@ -270,7 +270,7 @@ static void files_repopulate(files_data* listData, linked_list* items) {
 
     Result res = task_populate_files(&listData->populateData);
     if(R_FAILED(res)) {
-        error_display_res(NULL, NULL, res, "无法初始化文件列表的总数。");
+        error_display_res(NULL, NULL, res, "无法初始化文件目录的结构.");
     }
 
     listData->populated = true;
@@ -360,7 +360,7 @@ static void files_update(ui_view* view, void* data, linked_list* items, list_ite
     }
 
     if(listData->populateData.finished && R_FAILED(listData->populateData.result)) {
-        error_display_res(NULL, NULL, listData->populateData.result, "无法填充文件列表");
+        error_display_res(NULL, NULL, listData->populateData.result, "无法列举文件目录.");
 
         listData->populateData.result = 0;
     }
@@ -369,7 +369,7 @@ static void files_update(ui_view* view, void* data, linked_list* items, list_ite
 void files_open(FS_ArchiveID archiveId, FS_Path archivePath) {
     files_data* data = (files_data*) calloc(1, sizeof(files_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配文件数据。");
+        error_display(NULL, NULL, "无法分配文件数据.");
 
         return;
     }
@@ -397,7 +397,7 @@ void files_open(FS_ArchiveID archiveId, FS_Path archivePath) {
     if(archivePath.data != NULL) {
         data->archivePath.data = calloc(1, data->archivePath.size);
         if(data->archivePath.data == NULL) {
-            error_display(NULL, NULL, "无法分配文件数据。");
+            error_display(NULL, NULL, "无法分配文件数据.");
 
             files_free_data(data);
             return;
@@ -412,13 +412,13 @@ void files_open(FS_ArchiveID archiveId, FS_Path archivePath) {
 
     Result res = 0;
     if(R_FAILED(res = fs_open_archive(&data->archive, archiveId, archivePath))) {
-        error_display_res(NULL, NULL, res, "无法打开文件列表的存档。");
+        error_display_res(NULL, NULL, res, "无法打开文件列表的存档.");
 
         files_free_data(data);
         return;
     }
 
-    list_display("文件", "A：选择, B：返回, X：刷新, Select：选项", data, files_update, files_draw_top);
+    list_display("文件", "A: 选择, B：返回, X: 刷新, Select: 选项", data, files_update, files_draw_top);
 }
 
 static void files_open_nand_warning_onresponse(ui_view* view, void* data, u32 response) {
@@ -430,7 +430,7 @@ static void files_open_nand_warning_onresponse(ui_view* view, void* data, u32 re
 }
 
 void files_open_nand_warning(FS_ArchiveID archive) {
-    prompt_display_yes_no("确认", "修改 NAND 是危险的，\n这可能导致系统无法正常运行。\n请您确保自己知道正在做什么。\n\n继续？", COLOR_TEXT, (void*) archive, NULL, files_open_nand_warning_onresponse);
+    prompt_display_yes_no("确认", "修改 NAND 是危险的,\n这可能导致系统无法正常运行。\n请您确保自己知道正在做什么.\n\n继续?", COLOR_TEXT, (void*) archive, NULL, files_open_nand_warning_onresponse);
 }
 
 void files_open_sd() {
