@@ -10,8 +10,8 @@
 static list_item sd = {"SD 卡", COLOR_TEXT, files_open_sd};
 static list_item ctr_nand = {"CTR NAND", COLOR_TEXT, files_open_ctr_nand};
 static list_item twl_nand = {"TWL NAND", COLOR_TEXT, files_open_twl_nand};
-static list_item twl_photo = {"TWL 图片", COLOR_TEXT, files_open_twl_photo};
-static list_item twl_sound = {"TWL 音频", COLOR_TEXT, files_open_twl_sound};
+static list_item twl_photo = {"TWL 照片", COLOR_TEXT, files_open_twl_photo};
+static list_item twl_sound = {"TWL 声音", COLOR_TEXT, files_open_twl_sound};
 static list_item dump_nand = {"导出 NAND", COLOR_TEXT, dumpnand_open};
 static list_item titles = {"Titles", COLOR_TEXT, titles_open};
 static list_item pending_titles = {"未完成的 Titles", COLOR_TEXT, pendingtitles_open};
@@ -64,5 +64,5 @@ static void mainmenu_update(ui_view* view, void* data, linked_list* items, list_
 void mainmenu_open() {
     resources_load();
 
-    list_display("主菜单", "A：选择, START：退出", NULL, mainmenu_update, mainmenu_draw_top);
+    list_display("主菜单", "A: 选择, START: 退出", NULL, mainmenu_update, mainmenu_draw_top);
 }
