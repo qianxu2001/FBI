@@ -80,7 +80,7 @@ static void action_delete_tickets_update(ui_view* view, void* data, float* progr
         info_destroy(view);
 
         if(R_SUCCEEDED(deleteData->deleteInfo.result)) {
-            prompt_display_notify("成功", "已删除凭据.", COLOR_TEXT, NULL, NULL, NULL);
+            prompt_display_notify("成功", "已删除.", COLOR_TEXT, NULL, NULL, NULL);
         }
 
         action_delete_tickets_free_data(deleteData);
