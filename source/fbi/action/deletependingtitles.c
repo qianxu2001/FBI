@@ -84,7 +84,7 @@ static void action_delete_pending_titles_update(ui_view* view, void* data, float
         info_destroy(view);
 
         if(R_SUCCEEDED(deleteData->deleteInfo.result)) {
-            prompt_display_notify("成功", "已删除未完成的应用.", COLOR_TEXT, NULL, NULL, NULL);
+            prompt_display_notify("成功", "已删除.", COLOR_TEXT, NULL, NULL, NULL);
         }
 
         action_delete_pending_titles_free_data(deleteData);
@@ -202,7 +202,7 @@ void action_delete_pending_titles(linked_list* items, list_item* selected, const
 
         Result listRes = task_populate_pending_titles(&loadingData->popData);
         if(R_FAILED(listRes)) {
-            error_display_res(NULL, NULL, listRes, "无法启动未完成的应用的列表填充.");
+            error_display_res(NULL, NULL, listRes, "无法启动未完成的应用列表填充.");
 
             free(loadingData);
             action_delete_pending_titles_free_data(data);
@@ -221,7 +221,7 @@ void action_delete_pending_titles(linked_list* items, list_item* selected, const
 }
 
 void action_delete_pending_title(linked_list* items, list_item* selected) {
-    action_delete_pending_titles(items, selected, "删除所选的未完成的应用?", false);
+    action_delete_pending_titles(items, selected, "删除所选未完成的应用?", false);
 }
 
 void action_delete_all_pending_titles(linked_list* items, list_item* selected) {
