@@ -41,7 +41,7 @@ static void action_delete_system_save_data_update(ui_view* view, void* data, flo
 
 static void action_delete_system_save_data_onresponse(ui_view* view, void* data, u32 response) {
     if(response == PROMPT_YES) {
-        info_display("正在删除系统数据", "", false, data, action_delete_system_save_data_update, action_delete_system_save_data_draw_top);
+        info_display("正在删除", "", false, data, action_delete_system_save_data_update, action_delete_system_save_data_draw_top);
     } else {
         free(data);
     }
