@@ -95,7 +95,7 @@ static void action_import_twl_save_update(ui_view* view, void* data, float* prog
         info_destroy(view);
 
         if(R_SUCCEEDED(importData->importInfo.result)) {
-            prompt_display_notify("成功", "已导入存档.", COLOR_TEXT, importData->title, task_draw_title_info, NULL);
+            prompt_display_notify("成功", "已导入.", COLOR_TEXT, importData->title, task_draw_title_info, NULL);
         }
 
         free(data);
