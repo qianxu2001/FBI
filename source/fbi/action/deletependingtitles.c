@@ -63,7 +63,7 @@ static Result action_delete_pending_titles_restore(void* data, u32 index) {
 }
 
 static bool action_delete_pending_titles_error(void* data, u32 index, Result res, ui_view** errorView) {
-    *errorView = error_display_res(data, action_delete_pending_titles_draw_top, res, "无法删除未完成的 Title(s).");
+    *errorView = error_display_res(data, action_delete_pending_titles_draw_top, res, "无法删除未完成的应用.");
     return true;
 }
 
@@ -84,7 +84,7 @@ static void action_delete_pending_titles_update(ui_view* view, void* data, float
         info_destroy(view);
 
         if(R_SUCCEEDED(deleteData->deleteInfo.result)) {
-            prompt_display_notify("成功", "已删除未完成的 Title(s).", COLOR_TEXT, NULL, NULL, NULL);
+            prompt_display_notify("成功", "已删除未完成的应用.", COLOR_TEXT, NULL, NULL, NULL);
         }
 
         action_delete_pending_titles_free_data(deleteData);
@@ -106,7 +106,7 @@ static void action_delete_pending_titles_onresponse(ui_view* view, void* data, u
     if(response == PROMPT_YES) {
         Result res = task_data_op(&deleteData->deleteInfo);
         if(R_SUCCEEDED(res)) {
-            info_display("正在删除未完成的 Title(s)", "按 B 取消.", true, data, action_delete_pending_titles_update, action_delete_pending_titles_draw_top);
+            info_display("正在删除", "按 B 取消.", true, data, action_delete_pending_titles_update, action_delete_pending_titles_draw_top);
         } else {
             error_display_res(NULL, NULL, res, "无法启动删除操作.");
 
@@ -142,7 +142,7 @@ static void action_delete_pending_titles_loading_update(ui_view* view, void* dat
 
             prompt_display_yes_no("确认", loadingData->message, COLOR_TEXT, loadingData->deleteData, action_delete_pending_titles_draw_top, action_delete_pending_titles_onresponse);
         } else {
-            error_display_res(NULL, NULL, loadingData->popData.result, "无法填充未完成的 Titles 列表.");
+            error_display_res(NULL, NULL, loadingData->popData.result, "无法填充未完成的应用列表.");
 
             action_delete_pending_titles_free_data(loadingData->deleteData);
         }
@@ -155,13 +155,13 @@ static void action_delete_pending_titles_loading_update(ui_view* view, void* dat
         svcSignalEvent(loadingData->popData.cancelEvent);
     }
 
-    snprintf(text, PROGRESS_TEXT_MAX, "正在获取未完成的 Titles 列表...");
+    snprintf(text, PROGRESS_TEXT_MAX, "正在获取未完成的应用列表...");
 }
 
 void action_delete_pending_titles(linked_list* items, list_item* selected, const char* message, bool all) {
     delete_pending_titles_data* data = (delete_pending_titles_data*) calloc(1, sizeof(delete_pending_titles_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配删除未完成的 Title(s) 的数据.");
+        error_display(NULL, NULL, "无法分配删除未完成的应用的数据.");
 
         return;
     }
@@ -202,7 +202,7 @@ void action_delete_pending_titles(linked_list* items, list_item* selected, const
 
         Result listRes = task_populate_pending_titles(&loadingData->popData);
         if(R_FAILED(listRes)) {
-            error_display_res(NULL, NULL, listRes, "无法启动未完成的 Titles 的列表填充.");
+            error_display_res(NULL, NULL, listRes, "无法启动未完成的应用的列表填充.");
 
             free(loadingData);
             action_delete_pending_titles_free_data(data);
@@ -221,9 +221,9 @@ void action_delete_pending_titles(linked_list* items, list_item* selected, const
 }
 
 void action_delete_pending_title(linked_list* items, list_item* selected) {
-    action_delete_pending_titles(items, selected, "删除所选的未完成的 Title(s)?", false);
+    action_delete_pending_titles(items, selected, "删除所选的未完成的应用?", false);
 }
 
 void action_delete_all_pending_titles(linked_list* items, list_item* selected) {
-    action_delete_pending_titles(items, selected, "删除所有未完成的 Titles?", true);
+    action_delete_pending_titles(items, selected, "删除所有未完成的应用?", true);
 }
