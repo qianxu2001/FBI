@@ -61,7 +61,7 @@ static void action_extract_smdh_update(ui_view* view, void* data, float* progres
     info_destroy(view);
 
     if(R_SUCCEEDED(res)) {
-        prompt_display_notify("成功", "已提取 SMDH.", COLOR_TEXT, info, task_draw_title_info, NULL);
+        prompt_display_notify("成功", "已提取.", COLOR_TEXT, info, task_draw_title_info, NULL);
     } else {
         error_display_res(info, task_draw_title_info, res, "无法提取 SMDH.");
     }
