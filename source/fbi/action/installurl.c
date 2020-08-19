@@ -103,7 +103,7 @@ static Result action_install_url_open_dst(void* data, u32 index, void* initialRe
 
             bool n3ds = false;
             if(R_SUCCEEDED(APT_CheckNew3DS(&n3ds)) && !n3ds && ((titleId >> 28) & 0xF) == 2) {
-                ui_view* view = prompt_display_yes_no("Confirmation", "Title is intended for New 3DS systems.\nContinue?", COLOR_TEXT, data, action_install_url_draw_top, action_install_url_n3ds_onresponse);
+                ui_view* view = prompt_display_yes_no("确认", "该应用只适用于 New 3DS.\n继续?", COLOR_TEXT, data, action_install_url_draw_top, action_install_url_n3ds_onresponse);
                 if(view != NULL) {
                     svcWaitSynchronization(view->active, U64_MAX);
                 }
@@ -245,9 +245,9 @@ static bool action_install_url_error(void* data, u32 index, Result res, ui_view*
 
     char* url = installData->urls[index];
     if(strlen(url) > 38) {
-        *errorView = error_display_res(data, action_install_url_draw_top, res, "Failed to install from URL.\n%.35s...", url);
+        *errorView = error_display_res(data, action_install_url_draw_top, res, "无法从该链接安装.\n%.35s...", url);
     } else {
-        *errorView = error_display_res(data, action_install_url_draw_top, res, "Failed to install from URL.\n%.38s", url);
+        *errorView = error_display_res(data, action_install_url_draw_top, res, "无法从该链接安装.\n%.38s", url);
     }
 
     return true;
@@ -261,7 +261,7 @@ static void action_install_url_install_update(ui_view* view, void* data, float* 
         info_destroy(view);
 
         if(R_SUCCEEDED(installData->installInfo.result)) {
-            prompt_display_notify("Success", "Install finished.", COLOR_TEXT, NULL, NULL, NULL);
+            prompt_display_notify("成功", "已完成安装.", COLOR_TEXT, NULL, NULL, NULL);
         }
 
         action_install_url_free_data(installData);
@@ -290,9 +290,9 @@ static void action_install_url_confirm_onresponse(ui_view* view, void* data, u32
     if(response == PROMPT_YES) {
         Result res = task_data_op(&installData->installInfo);
         if(R_SUCCEEDED(res)) {
-            info_display("Installing From URL(s)", "Press B to cancel.", true, data, action_install_url_install_update, action_install_url_draw_top);
+            info_display("正在安装", "按 B 取消.", true, data, action_install_url_install_update, action_install_url_draw_top);
         } else {
-            error_display_res(NULL, NULL, res, "Failed to initiate installation.");
+            error_display_res(NULL, NULL, res, "无法启动链接安装.");
 
             action_install_url_free_data(installData);
         }
@@ -307,7 +307,7 @@ void action_install_url(const char* confirmMessage, const char* urls, const char
                         void (*drawTop)(ui_view* view, void* data, float x1, float y1, float x2, float y2, u32 index)) {
     install_url_data* data = (install_url_data*) calloc(1, sizeof(install_url_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "Failed to allocate URL install data.");
+        error_display(NULL, NULL, "无法启动链接安装的数据.");
 
         return;
     }
@@ -399,5 +399,5 @@ void action_install_url(const char* confirmMessage, const char* urls, const char
 
     data->installInfo.finished = true;
 
-    prompt_display_yes_no("Confirmation", confirmMessage, COLOR_TEXT, data, action_install_url_draw_top, action_install_url_confirm_onresponse);
+    prompt_display_yes_no("确认", confirmMessage, COLOR_TEXT, data, action_install_url_draw_top, action_install_url_confirm_onresponse);
 }
