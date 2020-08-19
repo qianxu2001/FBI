@@ -240,7 +240,7 @@ static void action_paste_contents_update(ui_view* view, void* data, float* progr
         info_destroy(view);
 
         if(R_SUCCEEDED(pasteData->pasteInfo.result)) {
-            prompt_display_notify("成功", "已粘贴项目.", COLOR_TEXT, NULL, NULL, NULL);
+            prompt_display_notify("成功", "已粘贴.", COLOR_TEXT, NULL, NULL, NULL);
         }
 
         action_paste_contents_free_data(pasteData);
