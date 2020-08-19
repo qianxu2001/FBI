@@ -45,10 +45,10 @@ static void action_import_secure_value_update(ui_view* view, void* data, float* 
 
 static void action_import_secure_value_onresponse(ui_view* view, void* data, u32 response) {
     if(response == PROMPT_YES) {
-        info_display("正在导入安全值", "", false, data, action_import_secure_value_update, task_draw_title_info);
+        info_display("正在导入", "", false, data, action_import_secure_value_update, task_draw_title_info);
     }
 }
 
 void action_import_secure_value(linked_list* items, list_item* selected) {
-    prompt_display_yes_no("确认", "导入安全值至所选 Title?", COLOR_TEXT, selected->data, task_draw_title_info, action_import_secure_value_onresponse);
+    prompt_display_yes_no("确认", "导入安全值至所选应用?", COLOR_TEXT, selected->data, task_draw_title_info, action_import_secure_value_onresponse);
 }
