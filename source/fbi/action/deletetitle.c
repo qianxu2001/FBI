@@ -37,7 +37,7 @@ static void action_delete_title_update(ui_view* view, void* data, float* progres
         linked_list_remove(deleteData->items, deleteData->selected);
         task_free_title(deleteData->selected);
 
-        prompt_display_notify("成功", "已删除应用.", COLOR_TEXT, NULL, NULL, NULL);
+        prompt_display_notify("成功", "已删除.", COLOR_TEXT, NULL, NULL, NULL);
     }
 
     free(data);
