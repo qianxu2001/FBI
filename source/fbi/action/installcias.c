@@ -120,7 +120,7 @@ static Result action_install_cias_open_dst(void* data, u32 index, void* initialR
 
     bool n3ds = false;
     if(R_SUCCEEDED(APT_CheckNew3DS(&n3ds)) && !n3ds && ((info->ciaInfo.titleId >> 28) & 0xF) == 2) {
-        ui_view* view = prompt_display_yes_no("确认", "应用只适用于 New 3DS.\n继续?", COLOR_TEXT, data, action_install_cias_draw_top, action_install_cias_n3ds_onresponse);
+        ui_view* view = prompt_display_yes_no("确认", "该应用只适用于 New 3DS.\n继续?", COLOR_TEXT, data, action_install_cias_draw_top, action_install_cias_n3ds_onresponse);
         if(view != NULL) {
             svcWaitSynchronization(view->active, U64_MAX);
         }
