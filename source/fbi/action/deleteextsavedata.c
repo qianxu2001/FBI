@@ -32,7 +32,7 @@ static void action_delete_ext_save_data_update(ui_view* view, void* data, float*
         linked_list_remove(deleteData->items, deleteData->selected);
         task_free_ext_save_data(deleteData->selected);
 
-        prompt_display_notify("成功", "已删除额外数据.", COLOR_TEXT, NULL, NULL, NULL);
+        prompt_display_notify("成功", "已删除.", COLOR_TEXT, NULL, NULL, NULL);
     }
 
     free(data);
