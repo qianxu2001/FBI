@@ -130,7 +130,7 @@ static void pendingtitles_update(ui_view* view, void* data, linked_list* items, 
 void pendingtitles_open() {
     pendingtitles_data* data = (pendingtitles_data*) calloc(1, sizeof(pendingtitles_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配未完成的 Titles 数据.");
+        error_display(NULL, NULL, "无法分配未完成的 Titles 的数据.");
 
         return;
     }
