@@ -138,7 +138,7 @@ static void action_export_twl_save_onresponse(ui_view* view, void* data, u32 res
 
         Result res = task_data_op(&exportData->exportInfo);
         if(R_SUCCEEDED(res)) {
-            info_display("正在导出存档", "按 B 取消.", true, data, action_export_twl_save_update, action_export_twl_save_draw_top);
+            info_display("正在导出", "按 B 取消.", true, data, action_export_twl_save_update, action_export_twl_save_draw_top);
         } else {
             error_display_res(exportData->title, task_draw_title_info, res, "无法启动导出存档.");
             free(data);
@@ -186,5 +186,5 @@ void action_export_twl_save(linked_list* items, list_item* selected) {
 
     data->exportInfo.finished = true;
 
-    prompt_display_yes_no("确认", "导出所选 Title 的存档?", COLOR_TEXT, data, action_export_twl_save_draw_top, action_export_twl_save_onresponse);
+    prompt_display_yes_no("确认", "导出所选应用的存档?", COLOR_TEXT, data, action_export_twl_save_draw_top, action_export_twl_save_onresponse);
 }
