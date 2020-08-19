@@ -200,7 +200,7 @@ static void remoteinstall_network_update(ui_view* view, void* data, float* progr
 static void remoteinstall_receive_urls_network() {
     remoteinstall_network_data* data = (remoteinstall_network_data*) calloc(1, sizeof(remoteinstall_network_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配网络安装数据.");
+        error_display(NULL, NULL, "无法分配网络安装的数据.");
 
         return;
     }
@@ -449,7 +449,7 @@ static void remoteinstall_repeat_last_request() {
         if(remoteinstall_get_last_urls(textBuf, DOWNLOAD_URL_MAX * INSTALL_URLS_MAX)) {
             action_install_url("从上次请求的 URL(s) 安装?", textBuf, NULL, NULL, NULL, NULL, NULL);
         } else {
-            prompt_display_notify("失败", "没有找到以前请求的 URL(s).", COLOR_TEXT, NULL, NULL, NULL);
+            prompt_display_notify("失败", "无法找到以前请求的 URL(s).", COLOR_TEXT, NULL, NULL, NULL);
         }
 
         free(textBuf);
@@ -461,17 +461,17 @@ static void remoteinstall_repeat_last_request() {
 static void remoteinstall_forget_last_request() {
     Result forgetRes = remoteinstall_set_last_urls(NULL);
     if(R_SUCCEEDED(forgetRes)) {
-        prompt_display_notify("成功", "已忘记上次请求的 URL(s).", COLOR_TEXT, NULL, NULL, NULL);
+        prompt_display_notify("成功", "已清除上次请求的 URL(s).", COLOR_TEXT, NULL, NULL, NULL);
     } else {
-        error_display_res(NULL, NULL, forgetRes, "无法忘记上次请求的 URL(s).");
+        error_display_res(NULL, NULL, forgetRes, "无法清除上次请求的 URL(s).");
     }
 }
 
 static list_item receive_urls_network = {"网络接收 URL(s)", COLOR_TEXT, remoteinstall_receive_urls_network};
 static list_item scan_qr_code = {"扫描二维码", COLOR_TEXT, remoteinstall_scan_qr_code};
 static list_item manually_enter_urls = {"手动输入 URL(s)", COLOR_TEXT, remoteinstall_manually_enter_urls};
-static list_item repeat_last_request = {"重复上一次请求", COLOR_TEXT, remoteinstall_repeat_last_request};
-static list_item forget_last_request = {"忘记上一次请求", COLOR_TEXT, remoteinstall_forget_last_request};
+static list_item repeat_last_request = {"重复上次请求的 URL(s)", COLOR_TEXT, remoteinstall_repeat_last_request};
+static list_item forget_last_request = {"清除上次请求的 URL(s)", COLOR_TEXT, remoteinstall_forget_last_request};
 
 static void remoteinstall_update(ui_view* view, void* data, linked_list* items, list_item* selected, bool selectedTouched) {
     if(hidKeysDown() & KEY_B) {
