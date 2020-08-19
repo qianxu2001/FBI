@@ -209,7 +209,7 @@ static void action_install_cias_update(ui_view* view, void* data, float* progres
         info_destroy(view);
 
         if(R_SUCCEEDED(installData->installInfo.result)) {
-            prompt_display_notify("成功", "已完成安装.", COLOR_TEXT, NULL, NULL, NULL);
+            prompt_display_notify("成功", "已安装.", COLOR_TEXT, NULL, NULL, NULL);
         }
 
         action_install_cias_free_data(installData);
@@ -304,7 +304,7 @@ static void action_install_cias_internal(linked_list* items, list_item* selected
     file_info* targetInfo = (file_info*) selected->data;
     Result targetCreateRes = task_create_file_item(&data->targetItem, targetInfo->archive, targetInfo->path, targetInfo->attributes, true);
     if(R_FAILED(targetCreateRes)) {
-        error_display_res(NULL, NULL, targetCreateRes, "无法创建目标文件项.");
+        error_display_res(NULL, NULL, targetCreateRes, "无法创建目标文件.");
 
         action_install_cias_free_data(data);
         return;
