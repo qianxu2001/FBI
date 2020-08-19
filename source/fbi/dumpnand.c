@@ -92,7 +92,7 @@ static void dumpnand_update(ui_view* view, void* data, float* progress, char* te
         info_destroy(view);
 
         if(R_SUCCEEDED(dumpData->result)) {
-            prompt_display_notify("成功", "已导出 NAND.", COLOR_TEXT, NULL, NULL, NULL);
+            prompt_display_notify("成功", "已导出.", COLOR_TEXT, NULL, NULL, NULL);
         }
 
         free(dumpData);
@@ -118,9 +118,9 @@ static void dumpnand_onresponse(ui_view* view, void* data, u32 response) {
 
         Result res = task_data_op(dumpData);
         if(R_SUCCEEDED(res)) {
-            info_display("正在导出 NAND", "按 B 取消.", true, data, dumpnand_update, NULL);
+            info_display("正在导出", "按 B 取消.", true, data, dumpnand_update, NULL);
         } else {
-            error_display_res(NULL, NULL, res, "无法初始化导出 NAND.");
+            error_display_res(NULL, NULL, res, "无法初始化 NAND 导出.");
             free(data);
         }
     } else {
