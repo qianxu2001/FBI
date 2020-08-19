@@ -192,7 +192,7 @@ static void action_delete_internal(linked_list* items, list_item* selected, cons
     file_info* targetInfo = (file_info*) selected->data;
     Result targetCreateRes = task_create_file_item(&data->targetItem, targetInfo->archive, targetInfo->path, targetInfo->attributes, false);
     if(R_FAILED(targetCreateRes)) {
-        error_display_res(NULL, NULL, targetCreateRes, "无法创建目标文件项.");
+        error_display_res(NULL, NULL, targetCreateRes, "无法创建目标文件.");
 
         action_delete_free_data(data);
         return;
