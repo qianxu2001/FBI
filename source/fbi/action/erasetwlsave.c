@@ -116,7 +116,7 @@ static void action_erase_twl_save_onresponse(ui_view* view, void* data, u32 resp
 
         Result res = task_data_op(&eraseData->eraseInfo);
         if(R_SUCCEEDED(res)) {
-            info_display("正在清除存档", "按 B 取消.", true, data, action_erase_twl_save_update, action_erase_twl_save_draw_top);
+            info_display("正在清除", "按 B 取消.", true, data, action_erase_twl_save_update, action_erase_twl_save_draw_top);
         } else {
             error_display_res(eraseData->title, task_draw_title_info, res, "无法启动清除存档.");
             free(data);
@@ -164,5 +164,5 @@ void action_erase_twl_save(linked_list* items, list_item* selected) {
 
     data->eraseInfo.finished = true;
 
-    prompt_display_yes_no("确认", "清除所选 Title 的存档?", COLOR_TEXT, data, action_erase_twl_save_draw_top, action_erase_twl_save_onresponse);
+    prompt_display_yes_no("确认", "清除所选应用的存档?", COLOR_TEXT, data, action_erase_twl_save_draw_top, action_erase_twl_save_onresponse);
 }
