@@ -27,7 +27,7 @@ static void action_launch_title_update(ui_view* view, void* data, float* progres
 
 static void action_launch_title_onresponse(ui_view* view, void* data, u32 response) {
     if(response == PROMPT_YES) {
-        info_display("正在启动应用", "", false, data, action_launch_title_update, task_draw_title_info);
+        info_display("正在启动", "", false, data, action_launch_title_update, task_draw_title_info);
     }
 }
 
