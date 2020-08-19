@@ -150,7 +150,7 @@ void task_draw_file_info(ui_view* view, void* data, float x1, float y1, float x2
             }
 
             infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos,
-                                    "Title ID: %016llX\n"
+                                    "应用 ID: %016llX\n"
                                             "版本: %hu (%d.%d.%d)\n"
                                             "区域: %s\n"
                                             "安装后大小: %.2f %s",
@@ -160,7 +160,7 @@ void task_draw_file_info(ui_view* view, void* data, float x1, float y1, float x2
                                     ui_get_display_size(info->ciaInfo.installedSize),
                                     ui_get_display_size_units(info->ciaInfo.installedSize));
         } else if(info->isTicket && info->ticketInfo.loaded) {
-            infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "Ticket ID: %016llX", info->ticketInfo.titleId);
+            infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "应用 ID: %016llX", info->ticketInfo.titleId);
         }
     }
 
@@ -178,7 +178,7 @@ void task_draw_pending_title_info(ui_view* view, void* data, float x1, float y1,
     char infoText[512];
 
     snprintf(infoText, sizeof(infoText),
-             "未完成的 Title ID: %016llX\n"
+             "未完成的应用 ID: %016llX\n"
                      "位置: %s\n"
                      "版本: %hu (%d.%d.%d)",
              info->titleId,
@@ -214,7 +214,7 @@ void task_draw_ticket_info(ui_view* view, void* data, float x1, float y1, float 
     if(info->loaded) {
         char infoText[512];
 
-        snprintf(infoText, sizeof(infoText), "Title ID: %016llX", info->titleId);
+        snprintf(infoText, sizeof(infoText), "应用 ID: %016llX", info->titleId);
 
         float infoWidth;
         screen_get_string_size(&infoWidth, NULL, infoText, 0.5f, 0.5f);
@@ -241,7 +241,7 @@ void task_draw_title_info(ui_view* view, void* data, float x1, float y1, float x
     char infoText[512];
 
     snprintf(infoText, sizeof(infoText),
-             "Title ID: %016llX\n"
+             "应用 ID: %016llX\n"
                      "位置: %s\n"
                      "版本: %hu (%d.%d.%d)\n"
                      "产品代码: %s\n"
