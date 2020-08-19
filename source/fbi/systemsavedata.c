@@ -69,7 +69,7 @@ static void systemsavedata_action_open(linked_list* items, list_item* selected) 
     data->items = items;
     data->selected = selected;
 
-    list_display("System Save Data Action", "A: Select, B: Return", data, systemsavedata_action_update, systemsavedata_action_draw_top);
+    list_display("系统数据操作", "A: 选择, B: 返回", data, systemsavedata_action_update, systemsavedata_action_draw_top);
 }
 
 static void systemsavedata_draw_top(ui_view* view, void* data, float x1, float y1, float x2, float y2, list_item* selected) {
@@ -109,14 +109,14 @@ static void systemsavedata_update(ui_view* view, void* data, linked_list* items,
         listData->populateData.items = items;
         Result res = task_populate_system_save_data(&listData->populateData);
         if(R_FAILED(res)) {
-            error_display_res(NULL, NULL, res, "无法初始化系统数据目录的结构.");
+            error_display_res(NULL, NULL, res, "无法启动系统数据列表填充.");
         }
 
         listData->populated = true;
     }
 
     if(listData->populateData.finished && R_FAILED(listData->populateData.result)) {
-        error_display_res(NULL, NULL, listData->populateData.result, "无法列举系统数据的目录.");
+        error_display_res(NULL, NULL, listData->populateData.result, "无法填充系统数据目录.");
 
         listData->populateData.result = 0;
     }
