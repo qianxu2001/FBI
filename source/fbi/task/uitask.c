@@ -107,7 +107,7 @@ void task_draw_file_info(ui_view* view, void* data, float x1, float y1, float x2
                 infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, ", ");
             }
 
-            infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "隐藏文件(夹)");
+            infoTextPos += snprintf(infoText + infoTextPos, sizeof(infoText) - infoTextPos, "隐藏的项目");
             needsSeparator = true;
         }
 
