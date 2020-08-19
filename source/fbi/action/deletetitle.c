@@ -32,12 +32,12 @@ static void action_delete_title_update(ui_view* view, void* data, float* progres
     info_destroy(view);
 
     if(R_FAILED(res)) {
-        error_display_res(info, task_draw_title_info, res, "无法删除 Title.");
+        error_display_res(info, task_draw_title_info, res, "无法删除应用.");
     } else {
         linked_list_remove(deleteData->items, deleteData->selected);
         task_free_title(deleteData->selected);
 
-        prompt_display_notify("成功", "已删除 Title.", COLOR_TEXT, NULL, NULL, NULL);
+        prompt_display_notify("成功", "已删除应用.", COLOR_TEXT, NULL, NULL, NULL);
     }
 
     free(data);
@@ -45,7 +45,7 @@ static void action_delete_title_update(ui_view* view, void* data, float* progres
 
 static void action_delete_title_onresponse(ui_view* view, void* data, u32 response) {
     if(response == PROMPT_YES) {
-        info_display("正在删除 Title", "", false, data, action_delete_title_update, action_delete_title_draw_top);
+        info_display("正在删除", "", false, data, action_delete_title_update, action_delete_title_draw_top);
     } else {
         free(data);
     }
@@ -54,7 +54,7 @@ static void action_delete_title_onresponse(ui_view* view, void* data, u32 respon
 static void action_delete_title_internal(linked_list* items, list_item* selected, const char* message, bool ticket) {
     delete_title_data* data = (delete_title_data*) calloc(1, sizeof(delete_title_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配删除 Title 的数据.");
+        error_display(NULL, NULL, "无法分配删除应用的数据.");
 
         return;
     }
@@ -67,9 +67,9 @@ static void action_delete_title_internal(linked_list* items, list_item* selected
 }
 
 void action_delete_title(linked_list* items, list_item* selected) {
-    action_delete_title_internal(items, selected, "删除所选 Title?", false);
+    action_delete_title_internal(items, selected, "删除所选应用?", false);
 }
 
 void action_delete_title_ticket(linked_list* items, list_item* selected) {
-    action_delete_title_internal(items, selected, "删除所选的 Title 和 Ticket?", true);
+    action_delete_title_internal(items, selected, "删除所选的应用和凭据?", true);
 }
