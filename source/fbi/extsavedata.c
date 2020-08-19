@@ -11,7 +11,7 @@
 #include "../core/core.h"
 
 static list_item browse_user_save_data = {"浏览用户数据", COLOR_TEXT, action_browse_user_ext_save_data};
-static list_item browse_spotpass_save_data = {"浏览 SpotPass 数据", COLOR_TEXT, action_browse_boss_ext_save_data};
+static list_item browse_spotpass_save_data = {"浏览悄然连接数据", COLOR_TEXT, action_browse_boss_ext_save_data};
 static list_item delete_save_data = {"删除数据", COLOR_TEXT, action_delete_ext_save_data};
 
 typedef struct {
@@ -188,14 +188,14 @@ static void extsavedata_update(ui_view* view, void* data, linked_list* items, li
         listData->populateData.items = items;
         Result res = task_populate_ext_save_data(&listData->populateData);
         if(R_FAILED(res)) {
-            error_display_res(NULL, NULL, res, "无法初始化额外数据目录的结构.");
+            error_display_res(NULL, NULL, res, "无法启动额外数据列表填充.");
         }
 
         listData->populated = true;
     }
 
     if(listData->populateData.finished && R_FAILED(listData->populateData.result)) {
-        error_display_res(NULL, NULL, listData->populateData.result, "无法列举额外数据的目录.");
+        error_display_res(NULL, NULL, listData->populateData.result, "无法填充额外数据列表.");
 
         listData->populateData.result = 0;
     }
