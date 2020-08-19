@@ -109,7 +109,7 @@ static void action_export_twl_save_update(ui_view* view, void* data, float* prog
         info_destroy(view);
 
         if(R_SUCCEEDED(exportData->exportInfo.result)) {
-            prompt_display_notify("成功", "已导出存档.", COLOR_TEXT, exportData->title, task_draw_title_info, NULL);
+            prompt_display_notify("成功", "已导出.", COLOR_TEXT, exportData->title, task_draw_title_info, NULL);
         }
 
         free(data);
