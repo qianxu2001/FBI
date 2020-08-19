@@ -27,12 +27,12 @@ static void action_delete_ext_save_data_update(ui_view* view, void* data, float*
     info_destroy(view);
 
     if(R_FAILED(res)) {
-        error_display_res(info, task_draw_ext_save_data_info, res, "Failed to delete ext save data.");
+        error_display_res(info, task_draw_ext_save_data_info, res, "无法删除额外数据.");
     } else {
         linked_list_remove(deleteData->items, deleteData->selected);
         task_free_ext_save_data(deleteData->selected);
 
-        prompt_display_notify("Success", "Ext save data deleted.", COLOR_TEXT, NULL, NULL, NULL);
+        prompt_display_notify("成功", "已删除额外数据.", COLOR_TEXT, NULL, NULL, NULL);
     }
 
     free(data);
@@ -40,7 +40,7 @@ static void action_delete_ext_save_data_update(ui_view* view, void* data, float*
 
 static void action_delete_ext_save_data_onresponse(ui_view* view, void* data, u32 response) {
     if(response == PROMPT_YES) {
-        info_display("Deleting Ext Save Data", "", false, data, action_delete_ext_save_data_update, action_delete_ext_save_data_draw_top);
+        info_display("正在删除额外数据", "", false, data, action_delete_ext_save_data_update, action_delete_ext_save_data_draw_top);
     } else {
         free(data);
     }
@@ -49,7 +49,7 @@ static void action_delete_ext_save_data_onresponse(ui_view* view, void* data, u3
 void action_delete_ext_save_data(linked_list* items, list_item* selected) {
     delete_ext_save_data_data* data = (delete_ext_save_data_data*) calloc(1, sizeof(delete_ext_save_data_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "Failed to allocate delete ext save data data.");
+        error_display(NULL, NULL, "无法分配删除额外数据的数据.");
 
         return;
     }
@@ -57,5 +57,5 @@ void action_delete_ext_save_data(linked_list* items, list_item* selected) {
     data->items = items;
     data->selected = selected;
 
-    prompt_display_yes_no("Confirmation", "Delete the selected ext save data?", COLOR_TEXT, data, action_delete_ext_save_data_draw_top, action_delete_ext_save_data_onresponse);
+    prompt_display_yes_no("确认", "删除所选的额外数据?", COLOR_TEXT, data, action_delete_ext_save_data_draw_top, action_delete_ext_save_data_onresponse);
 }
