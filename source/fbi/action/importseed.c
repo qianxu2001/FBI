@@ -16,7 +16,7 @@ static void action_import_seed_update(ui_view* view, void* data, float* progress
     info_destroy(view);
 
     if(R_SUCCEEDED(res)) {
-        prompt_display_notify("成功", "已导入种子.", COLOR_TEXT, info, task_draw_title_info, NULL);
+        prompt_display_notify("成功", "已导入.", COLOR_TEXT, info, task_draw_title_info, NULL);
     } else {
         error_display_res(info, task_draw_title_info, res, "无法导入种子.");
     }
