@@ -412,7 +412,7 @@ void files_open(FS_ArchiveID archiveId, FS_Path archivePath) {
 
     Result res = 0;
     if(R_FAILED(res = fs_open_archive(&data->archive, archiveId, archivePath))) {
-        error_display_res(NULL, NULL, res, "无法打开文件列表的存档.");
+        error_display_res(NULL, NULL, res, "没有找到文件夹.");
 
         files_free_data(data);
         return;
