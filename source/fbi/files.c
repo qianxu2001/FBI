@@ -23,8 +23,8 @@ static list_item install_ticket = {"安装 Ticket", COLOR_TEXT, action_install_t
 static list_item install_and_delete_ticket = {"安装并删除 Ticket", COLOR_TEXT, action_install_ticket_delete};
 
 static list_item delete_dir = {"删除", COLOR_TEXT, action_delete_dir};
-static list_item copy_all_contents = {"复制所有文件(夹)", COLOR_TEXT, NULL};
-static list_item delete_all_contents = {"删除所有文件(夹)", COLOR_TEXT, action_delete_dir_contents};
+static list_item copy_all_contents = {"复制所有项目", COLOR_TEXT, NULL};
+static list_item delete_all_contents = {"删除所有项目", COLOR_TEXT, action_delete_dir_contents};
 static list_item new_folder = {"新建文件夹", COLOR_TEXT, action_new_folder};
 
 static list_item install_all_cias = {"安装所有 CIAs", COLOR_TEXT, action_install_cias};
@@ -107,7 +107,7 @@ static void files_action_update(ui_view* view, void* data, linked_list* items, l
 
             Result res = 0;
             if(R_SUCCEEDED(res = clipboard_set_contents(actionData->parent->archive, info->path, selected == &copy_all_contents))) {
-                prompt_display_notify("成功", selected == &copy_all_contents ? "当前文件夹的所有文件(夹)已复制到剪贴板." : (info->attributes & FS_ATTRIBUTE_DIRECTORY) ? "当前文件夹已复制到剪贴板." : "文件已复制到剪贴板.", COLOR_TEXT, info, task_draw_file_info, NULL);
+                prompt_display_notify("成功", selected == &copy_all_contents ? "当前文件夹的所有项目已复制到剪贴板." : (info->attributes & FS_ATTRIBUTE_DIRECTORY) ? "当前文件夹已复制到剪贴板." : "文件已复制到剪贴板.", COLOR_TEXT, info, task_draw_file_info, NULL);
             } else {
                 error_display_res(info, task_draw_file_info, res, "无法复制到剪贴板.");
             }
@@ -238,7 +238,7 @@ static void files_options_update(ui_view* view, void* data, linked_list* items, 
     }
 
     if(linked_list_size(items) == 0) {
-        files_options_add_entry(items, "显示隐藏的文件(夹)", &listData->showHidden);
+        files_options_add_entry(items, "显示隐藏的项目", &listData->showHidden);
         files_options_add_entry(items, "显示文件夹", &listData->showDirectories);
         files_options_add_entry(items, "显示文件", &listData->showFiles);
         files_options_add_entry(items, "显示 CIAs", &listData->showCias);
