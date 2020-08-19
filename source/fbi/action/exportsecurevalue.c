@@ -53,7 +53,7 @@ static void action_export_secure_value_update(ui_view* view, void* data, float* 
     info_destroy(view);
 
     if(R_SUCCEEDED(res)) {
-        prompt_display_notify("成功", "已导出安全值.", COLOR_TEXT, info, task_draw_title_info, NULL);
+        prompt_display_notify("成功", "已导出.", COLOR_TEXT, info, task_draw_title_info, NULL);
     } else {
         error_display_res(info, task_draw_title_info, res, "无法导出安全值.");
     }
