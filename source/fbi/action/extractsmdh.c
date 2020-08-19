@@ -69,10 +69,10 @@ static void action_extract_smdh_update(ui_view* view, void* data, float* progres
 
 static void action_extract_smdh_onresponse(ui_view* view, void* data, u32 response) {
     if(response == PROMPT_YES) {
-        info_display("正在提取 SMDH", "", false, data, action_extract_smdh_update, task_draw_title_info);
+        info_display("正在提取", "", false, data, action_extract_smdh_update, task_draw_title_info);
     }
 }
 
 void action_extract_smdh(linked_list* items, list_item* selected) {
-    prompt_display_yes_no("确认", "提取所选 Title 的 SMDH?", COLOR_TEXT, selected->data, task_draw_title_info, action_extract_smdh_onresponse);
+    prompt_display_yes_no("确认", "提取所选应用的 SMDH?", COLOR_TEXT, selected->data, task_draw_title_info, action_extract_smdh_onresponse);
 }
