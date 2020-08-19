@@ -31,5 +31,5 @@ static void action_delete_secure_value_onresponse(ui_view* view, void* data, u32
 }
 
 void action_delete_secure_value(linked_list* items, list_item* selected) {
-    prompt_display_yes_no("确认", "删除所选 Title 的安全值?", COLOR_TEXT, selected->data, task_draw_title_info, action_delete_secure_value_onresponse);
+    prompt_display_yes_no("确认", "删除所选应用的安全值?", COLOR_TEXT, selected->data, task_draw_title_info, action_delete_secure_value_onresponse);
 }
