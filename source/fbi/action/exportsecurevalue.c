@@ -61,7 +61,7 @@ static void action_export_secure_value_update(ui_view* view, void* data, float* 
 
 static void action_export_secure_value_onresponse(ui_view* view, void* data, u32 response) {
     if(response == PROMPT_YES) {
-        info_display("正在导出安全值", "", false, data, action_export_secure_value_update, task_draw_title_info);
+        info_display("正在导出", "", false, data, action_export_secure_value_update, task_draw_title_info);
     }
 }
 
