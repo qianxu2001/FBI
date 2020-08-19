@@ -87,7 +87,7 @@ static void action_erase_twl_save_update(ui_view* view, void* data, float* progr
         info_destroy(view);
 
         if(R_SUCCEEDED(eraseData->eraseInfo.result)) {
-            prompt_display_notify("成功", "已清除存档.", COLOR_TEXT, eraseData->title, task_draw_title_info, NULL);
+            prompt_display_notify("成功", "已清除.", COLOR_TEXT, eraseData->title, task_draw_title_info, NULL);
         }
 
         free(data);
