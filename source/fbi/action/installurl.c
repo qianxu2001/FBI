@@ -245,9 +245,9 @@ static bool action_install_url_error(void* data, u32 index, Result res, ui_view*
 
     char* url = installData->urls[index];
     if(strlen(url) > 38) {
-        *errorView = error_display_res(data, action_install_url_draw_top, res, "无法从该链接安装.\n%.35s...", url);
+        *errorView = error_display_res(data, action_install_url_draw_top, res, "无法从链接安装.\n%.35s...", url);
     } else {
-        *errorView = error_display_res(data, action_install_url_draw_top, res, "无法从该链接安装.\n%.38s", url);
+        *errorView = error_display_res(data, action_install_url_draw_top, res, "无法从链接安装.\n%.38s", url);
     }
 
     return true;
@@ -261,7 +261,7 @@ static void action_install_url_install_update(ui_view* view, void* data, float* 
         info_destroy(view);
 
         if(R_SUCCEEDED(installData->installInfo.result)) {
-            prompt_display_notify("成功", "已完成安装.", COLOR_TEXT, NULL, NULL, NULL);
+            prompt_display_notify("成功", "已安装.", COLOR_TEXT, NULL, NULL, NULL);
         }
 
         action_install_url_free_data(installData);
