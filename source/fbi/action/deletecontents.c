@@ -260,9 +260,9 @@ void action_delete_dir_contents(linked_list* items, list_item* selected) {
 }
 
 void action_delete_dir_cias(linked_list* items, list_item* selected) {
-    action_delete_internal(items, selected, "删除当前文件夹的所有 CIAs?", false, false, true, false);
+    action_delete_internal(items, selected, "删除当前文件夹的所有安装包?", false, false, true, false);
 }
 
 void action_delete_dir_tickets(linked_list* items, list_item* selected) {
-    action_delete_internal(items, selected, "删除当前文件夹的所有 Tickets?", false, false, false, true);
+    action_delete_internal(items, selected, "删除当前文件夹的所有凭据?", false, false, false, true);
 }
