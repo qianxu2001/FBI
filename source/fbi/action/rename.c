@@ -57,7 +57,7 @@ static void action_rename_onresponse(ui_view* view, void* data, SwkbdButton butt
         }
 
         if(R_SUCCEEDED(res)) {
-            if(strncmp(selected->name, "<current directory>", LIST_ITEM_NAME_MAX) != 0 && strncmp(selected->name, "<current file>", LIST_ITEM_NAME_MAX) != 0) {
+            if(strncmp(selected->name, "<当前文件夹>", LIST_ITEM_NAME_MAX) != 0 && strncmp(selected->name, "<当前文件>", LIST_ITEM_NAME_MAX) != 0) {
                 string_copy(selected->name, fileName, LIST_ITEM_NAME_MAX);
             }
 
@@ -66,9 +66,9 @@ static void action_rename_onresponse(ui_view* view, void* data, SwkbdButton butt
 
             linked_list_sort(renameData->items, NULL, task_compare_files);
 
-            prompt_display_notify("Success", "Renamed.", COLOR_TEXT, NULL, NULL, NULL);
+            prompt_display_notify("成功", "已重命名.", COLOR_TEXT, NULL, NULL, NULL);
         } else {
-            error_display_res(NULL, NULL, res, "Failed to perform rename.");
+            error_display_res(NULL, NULL, res, "无法执行重命名.");
         }
     }
 
@@ -78,7 +78,7 @@ static void action_rename_onresponse(ui_view* view, void* data, SwkbdButton butt
 void action_rename(linked_list* items, list_item* selected) {
     rename_data* data = (rename_data*) calloc(1, sizeof(rename_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "Failed to allocate rename data.");
+        error_display(NULL, NULL, "无法分配重命名数据.");
 
         return;
     }
@@ -86,5 +86,5 @@ void action_rename(linked_list* items, list_item* selected) {
     data->items = items;
     data->selected = selected;
 
-    kbd_display("Enter new name", ((file_info*) selected->data)->name, SWKBD_TYPE_NORMAL, 0, SWKBD_NOTEMPTY_NOTBLANK, FILE_NAME_MAX, data, action_rename_onresponse);
+    kbd_display("输入新名称", ((file_info*) selected->data)->name, SWKBD_TYPE_NORMAL, 0, SWKBD_NOTEMPTY_NOTBLANK, FILE_NAME_MAX, data, action_rename_onresponse);
 }
