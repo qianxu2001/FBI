@@ -144,7 +144,7 @@ static void remoteinstall_network_update(ui_view* view, void* data, float* progr
 
         u32 size = 0;
         if(remoteinstall_network_recvwait(networkData->clientSocket, &size, sizeof(size), 0) != sizeof(size)) {
-            error_display_errno(NULL, NULL, errno, "无法读取 Payload 大小.");
+            error_display_errno(NULL, NULL, errno, "无法读取载荷大小.");
 
             remoteinstall_network_close_client(data);
             return;
@@ -152,7 +152,7 @@ static void remoteinstall_network_update(ui_view* view, void* data, float* progr
 
         size = ntohl(size);
         if(size >= DOWNLOAD_URL_MAX * INSTALL_URLS_MAX) {
-            error_display(NULL, NULL, "Payload 过大.");
+            error_display(NULL, NULL, "载荷过大.");
 
             remoteinstall_network_close_client(data);
             return;
@@ -160,14 +160,14 @@ static void remoteinstall_network_update(ui_view* view, void* data, float* progr
 
         char* urls = (char*) calloc(size + 1, sizeof(char));
         if(urls == NULL) {
-            error_display(NULL, NULL, "无法分配 URL(s) 缓存.");
+            error_display(NULL, NULL, "无法分配链接缓存.");
 
             remoteinstall_network_close_client(data);
             return;
         }
 
         if(remoteinstall_network_recvwait(networkData->clientSocket, urls, size, 0) != size) {
-            error_display_errno(NULL, NULL, errno, "无法读取 URL(s).");
+            error_display_errno(NULL, NULL, errno, "无法读取链接.");
 
             free(urls);
             remoteinstall_network_close_client(data);
@@ -175,7 +175,7 @@ static void remoteinstall_network_update(ui_view* view, void* data, float* progr
         }
 
         remoteinstall_set_last_urls(urls);
-        action_install_url("从接收到的 URL(s) 安装?", urls, NULL, data, NULL, remoteinstall_network_close_client, NULL);
+        action_install_url("从接收到的链接安装?", urls, NULL, data, NULL, remoteinstall_network_close_client, NULL);
 
         free(urls);
     } else if(errno != EAGAIN) {
@@ -236,7 +236,7 @@ static void remoteinstall_receive_urls_network() {
         return;
     }
 
-    info_display("接收 URL(s)", "B: 返回", false, data, remoteinstall_network_update, NULL);
+    info_display("接收链接", "B: 返回", false, data, remoteinstall_network_update, NULL);
 }
 
 #define QR_IMAGE_WIDTH 400
@@ -435,43 +435,43 @@ static void remoteinstall_manually_enter_urls_onresponse(ui_view* view, void* da
     if(button == SWKBD_BUTTON_CONFIRM) {
         remoteinstall_set_last_urls(response);
 
-        action_install_url("从输入的 URL(s) 安装?", response, NULL, NULL, NULL, NULL, NULL);
+        action_install_url("从输入的链接安装?", response, NULL, NULL, NULL, NULL, NULL);
     }
 }
 
 static void remoteinstall_manually_enter_urls() {
-    kbd_display("输入 URL(s)", "", SWKBD_TYPE_NORMAL, SWKBD_MULTILINE, SWKBD_NOTEMPTY_NOTBLANK, DOWNLOAD_URL_MAX * INSTALL_URLS_MAX, NULL, remoteinstall_manually_enter_urls_onresponse);
+    kbd_display("输入链接", "", SWKBD_TYPE_NORMAL, SWKBD_MULTILINE, SWKBD_NOTEMPTY_NOTBLANK, DOWNLOAD_URL_MAX * INSTALL_URLS_MAX, NULL, remoteinstall_manually_enter_urls_onresponse);
 }
 
 static void remoteinstall_repeat_last_request() {
     char* textBuf = (char*) calloc(1, DOWNLOAD_URL_MAX * INSTALL_URLS_MAX);
     if(textBuf != NULL) {
         if(remoteinstall_get_last_urls(textBuf, DOWNLOAD_URL_MAX * INSTALL_URLS_MAX)) {
-            action_install_url("从上次请求的 URL(s) 安装?", textBuf, NULL, NULL, NULL, NULL, NULL);
+            action_install_url("从上次请求的链接安装?", textBuf, NULL, NULL, NULL, NULL, NULL);
         } else {
-            prompt_display_notify("失败", "无法找到以前请求的 URL(s).", COLOR_TEXT, NULL, NULL, NULL);
+            prompt_display_notify("失败", "没有找到以前请求的链接.", COLOR_TEXT, NULL, NULL, NULL);
         }
 
         free(textBuf);
     } else {
-        error_display_res(NULL, NULL, R_APP_OUT_OF_MEMORY, "无法分配 URL(s) 文本的缓存.");
+        error_display_res(NULL, NULL, R_APP_OUT_OF_MEMORY, "无法分配链接文本的缓存.");
     }
 }
 
 static void remoteinstall_forget_last_request() {
     Result forgetRes = remoteinstall_set_last_urls(NULL);
     if(R_SUCCEEDED(forgetRes)) {
-        prompt_display_notify("成功", "已清除上次请求的 URL(s).", COLOR_TEXT, NULL, NULL, NULL);
+        prompt_display_notify("成功", "已清除.", COLOR_TEXT, NULL, NULL, NULL);
     } else {
-        error_display_res(NULL, NULL, forgetRes, "无法清除上次请求的 URL(s).");
+        error_display_res(NULL, NULL, forgetRes, "无法清除上次请求的链接.");
     }
 }
 
-static list_item receive_urls_network = {"网络接收 URL(s)", COLOR_TEXT, remoteinstall_receive_urls_network};
+static list_item receive_urls_network = {"网络接收链接", COLOR_TEXT, remoteinstall_receive_urls_network};
 static list_item scan_qr_code = {"扫描二维码", COLOR_TEXT, remoteinstall_scan_qr_code};
-static list_item manually_enter_urls = {"手动输入 URL(s)", COLOR_TEXT, remoteinstall_manually_enter_urls};
-static list_item repeat_last_request = {"重复上次请求的 URL(s)", COLOR_TEXT, remoteinstall_repeat_last_request};
-static list_item forget_last_request = {"清除上次请求的 URL(s)", COLOR_TEXT, remoteinstall_forget_last_request};
+static list_item manually_enter_urls = {"手动输入链接", COLOR_TEXT, remoteinstall_manually_enter_urls};
+static list_item repeat_last_request = {"重复上次请求的链接", COLOR_TEXT, remoteinstall_repeat_last_request};
+static list_item forget_last_request = {"清除上次请求的链接", COLOR_TEXT, remoteinstall_forget_last_request};
 
 static void remoteinstall_update(ui_view* view, void* data, linked_list* items, list_item* selected, bool selectedTouched) {
     if(hidKeysDown() & KEY_B) {
