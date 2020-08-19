@@ -10,11 +10,11 @@
 #include "task/uitask.h"
 #include "../core/core.h"
 
-static list_item launch_title = {"启动 Title", COLOR_TEXT, action_launch_title};
-static list_item delete_title = {"删除 Title", COLOR_TEXT, action_delete_title};
-static list_item delete_title_ticket = {"删除 Title 和 Ticket", COLOR_TEXT, action_delete_title_ticket};
+static list_item launch_title = {"启动应用", COLOR_TEXT, action_launch_title};
+static list_item delete_title = {"删除应用", COLOR_TEXT, action_delete_title};
+static list_item delete_title_ticket = {"删除应用和凭据", COLOR_TEXT, action_delete_title_ticket};
 static list_item extract_smdh = {"提取 SMDH", COLOR_TEXT, action_extract_smdh};
-static list_item import_seed = {"导入 Seed", COLOR_TEXT, action_import_seed};
+static list_item import_seed = {"导入种子", COLOR_TEXT, action_import_seed};
 static list_item browse_save_data = {"浏览数据", COLOR_TEXT, action_browse_title_save_data};
 static list_item import_save_data = {"导入数据", COLOR_TEXT, action_import_twl_save};
 static list_item export_save_data = {"导出数据", COLOR_TEXT, action_export_twl_save};
@@ -105,7 +105,7 @@ static void titles_action_update(ui_view* view, void* data, linked_list* items, 
 static void titles_action_open(linked_list* items, list_item* selected) {
     titles_action_data* data = (titles_action_data*) calloc(1, sizeof(titles_action_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配 Title 操作的数据.");
+        error_display(NULL, NULL, "无法分配应用操作的数据.");
 
         return;
     }
@@ -113,7 +113,7 @@ static void titles_action_open(linked_list* items, list_item* selected) {
     data->items = items;
     data->selected = selected;
 
-    list_display("Title 操作", "A: 选择, B: 返回", data, titles_action_update, titles_action_draw_top);
+    list_display("应用操作", "A: 选择, B: 返回", data, titles_action_update, titles_action_draw_top);
 }
 
 static void titles_options_add_entry(linked_list* items, const char* name, bool* val) {
@@ -176,9 +176,9 @@ static void titles_options_update(ui_view* view, void* data, linked_list* items,
     }
 
     if(linked_list_size(items) == 0) {
-        titles_options_add_entry(items, "显示游戏卡带中的 Title", &listData->showGameCard);
-        titles_options_add_entry(items, "显示 SD 卡中的 Titles", &listData->showSD);
-        titles_options_add_entry(items, "显示 NAND 中的 Titles", &listData->showNAND);
+        titles_options_add_entry(items, "显示游戏卡带中的应用", &listData->showGameCard);
+        titles_options_add_entry(items, "显示 SD 卡中的应用", &listData->showSD);
+        titles_options_add_entry(items, "显示 NAND 中的应用", &listData->showNAND);
         titles_options_add_entry(items, "按 ID 排序", &listData->sortById);
         titles_options_add_entry(items, "按名称排序", &listData->sortByName);
         titles_options_add_entry(items, "按大小排序", &listData->sortBySize);
@@ -231,14 +231,14 @@ static void titles_update(ui_view* view, void* data, linked_list* items, list_it
         listData->populateData.items = items;
         Result res = task_populate_titles(&listData->populateData);
         if(R_FAILED(res)) {
-            error_display_res(NULL, NULL, res, "无法初始化 Titles 目录的结构.");
+            error_display_res(NULL, NULL, res, "无法启动应用列表填充.");
         }
 
         listData->populated = true;
     }
 
     if(listData->populateData.finished && R_FAILED(listData->populateData.result)) {
-        error_display_res(NULL, NULL, listData->populateData.result, "无法列举 Titles 目录.");
+        error_display_res(NULL, NULL, listData->populateData.result, "无法填充应用目录.");
 
         listData->populateData.result = 0;
     }
@@ -312,7 +312,7 @@ static int titles_compare(void* data, const void* p1, const void* p2) {
 void titles_open() {
     titles_data* data = (titles_data*) calloc(1, sizeof(titles_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配 Titles 数据.");
+        error_display(NULL, NULL, "无法分配应用数据.");
 
         return;
     }
@@ -330,5 +330,5 @@ void titles_open() {
     data->sortByName = true;
     data->sortBySize = false;
 
-    list_display("Titles", "A: 选择, B: 返回, X: 刷新, SELECT: 选项", data, titles_update, titles_draw_top);
+    list_display("应用", "A: 选择, B: 返回, X: 刷新, SELECT: 选项", data, titles_update, titles_draw_top);
 }
