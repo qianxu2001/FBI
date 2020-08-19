@@ -43,7 +43,7 @@ static void action_new_folder_onresponse(ui_view* view, void* data, SwkbdButton 
                 linked_list_sort(newFolderData->items, NULL, task_compare_files);
             }
 
-            prompt_display_notify("成功", "已创建文件夹.", COLOR_TEXT, NULL, NULL, NULL);
+            prompt_display_notify("成功", "已创建.", COLOR_TEXT, NULL, NULL, NULL);
         } else {
             error_display_res(NULL, NULL, res, "无法创建文件夹.");
         }
