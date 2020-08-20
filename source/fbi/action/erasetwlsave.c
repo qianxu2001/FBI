@@ -118,7 +118,7 @@ static void action_erase_twl_save_onresponse(ui_view* view, void* data, u32 resp
         if(R_SUCCEEDED(res)) {
             info_display("正在清除", "按 B 取消.", true, data, action_erase_twl_save_update, action_erase_twl_save_draw_top);
         } else {
-            error_display_res(eraseData->title, task_draw_title_info, res, "无法启动数据清除.");
+            error_display_res(eraseData->title, task_draw_title_info, res, "无法启动清除数据.");
             free(data);
         }
     } else {
