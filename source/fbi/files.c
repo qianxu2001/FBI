@@ -19,8 +19,8 @@ static list_item delete_file = {"删除", COLOR_TEXT, action_delete_file};
 static list_item install_cia = {"安装安装包", COLOR_TEXT, action_install_cia};
 static list_item install_and_delete_cia = {"安装并删除安装包", COLOR_TEXT, action_install_cia_delete};
 
-static list_item install_ticket = {"安装凭据", COLOR_TEXT, action_install_ticket};
-static list_item install_and_delete_ticket = {"安装并删除凭据", COLOR_TEXT, action_install_ticket_delete};
+static list_item install_ticket = {"安装应用引导", COLOR_TEXT, action_install_ticket};
+static list_item install_and_delete_ticket = {"安装并删除应用引导", COLOR_TEXT, action_install_ticket_delete};
 
 static list_item delete_dir = {"删除", COLOR_TEXT, action_delete_dir};
 static list_item copy_all_contents = {"复制所有项目", COLOR_TEXT, NULL};
@@ -31,9 +31,9 @@ static list_item install_all_cias = {"安装所有安装包", COLOR_TEXT, action
 static list_item install_and_delete_all_cias = {"安装并删除所有安装包", COLOR_TEXT, action_install_cias_delete};
 static list_item delete_all_cias = {"删除安装包", COLOR_TEXT, action_delete_dir_cias};
 
-static list_item install_all_tickets = {"安装所有凭据", COLOR_TEXT, action_install_tickets};
-static list_item install_and_delete_all_tickets = {"安装并删除所有凭据", COLOR_TEXT, action_install_tickets_delete};
-static list_item delete_all_tickets = {"删除所有凭据", COLOR_TEXT, action_delete_dir_tickets};
+static list_item install_all_tickets = {"安装所有应用引导", COLOR_TEXT, action_install_tickets};
+static list_item install_and_delete_all_tickets = {"安装并删除所有应用引导", COLOR_TEXT, action_install_tickets_delete};
+static list_item delete_all_tickets = {"删除所有应用引导", COLOR_TEXT, action_delete_dir_tickets};
 
 typedef struct {
     populate_files_data populateData;
@@ -242,7 +242,7 @@ static void files_options_update(ui_view* view, void* data, linked_list* items, 
         files_options_add_entry(items, "显示文件夹", &listData->showDirectories);
         files_options_add_entry(items, "显示文件", &listData->showFiles);
         files_options_add_entry(items, "显示安装包", &listData->showCias);
-        files_options_add_entry(items, "显示凭据", &listData->showTickets);
+        files_options_add_entry(items, "显示应用引导", &listData->showTickets);
     }
 }
 
