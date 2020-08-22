@@ -129,7 +129,7 @@ static Result action_install_tickets_restore(void* data, u32 index) {
 }
 
 static bool action_install_tickets_error(void* data, u32 index, Result res, ui_view** errorView) {
-    *errorView = error_display_res(data, action_install_tickets_draw_top, res, "无法安装凭据.");
+    *errorView = error_display_res(data, action_install_tickets_draw_top, res, "无法安装应用引导.");
     return true;
 }
 
@@ -189,7 +189,7 @@ static void action_install_tickets_onresponse(ui_view* view, void* data, u32 res
         if(R_SUCCEEDED(res)) {
             info_display("正在安装", "按 B 取消.", true, data, action_install_tickets_update, action_install_tickets_draw_top);
         } else {
-            error_display_res(NULL, NULL, res, "无法启动凭据安装.");
+            error_display_res(NULL, NULL, res, "无法启动应用引导安装.");
 
             action_install_tickets_free_data(installData);
         }
@@ -224,7 +224,7 @@ static void action_install_tickets_loading_update(ui_view* view, void* data, flo
 
             prompt_display_yes_no("Confirmation", loadingData->message, COLOR_TEXT, loadingData->installData, action_install_tickets_draw_top, action_install_tickets_onresponse);
         } else {
-            error_display_res(NULL, NULL, loadingData->popData.result, "无法填充凭据列表.");
+            error_display_res(NULL, NULL, loadingData->popData.result, "无法填充应用引导列表.");
 
             action_install_tickets_free_data(loadingData->installData);
         }
@@ -237,13 +237,13 @@ static void action_install_tickets_loading_update(ui_view* view, void* data, flo
         svcSignalEvent(loadingData->popData.cancelEvent);
     }
 
-    snprintf(text, PROGRESS_TEXT_MAX, "正在获取凭据列表...");
+    snprintf(text, PROGRESS_TEXT_MAX, "正在获取应用引导列表...");
 }
 
 static void action_install_tickets_internal(linked_list* items, list_item* selected, bool (*filter)(void* data, const char* name, u32 attributes), void* filterData, const char* message, bool delete) {
     install_tickets_data* data = (install_tickets_data*) calloc(1, sizeof(install_tickets_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配安装凭据的数据.");
+        error_display(NULL, NULL, "无法分配安装应用引导的数据.");
 
         return;
     }
@@ -316,7 +316,7 @@ static void action_install_tickets_internal(linked_list* items, list_item* selec
 
     Result listRes = task_populate_files(&loadingData->popData);
     if(R_FAILED(listRes)) {
-        error_display_res(NULL, NULL, listRes, "无法启动凭据列表填充.");
+        error_display_res(NULL, NULL, listRes, "无法启动应用引导列表填充.");
 
         free(loadingData);
         action_install_tickets_free_data(data);
@@ -327,17 +327,17 @@ static void action_install_tickets_internal(linked_list* items, list_item* selec
 }
 
 void action_install_ticket(linked_list* items, list_item* selected) {
-    action_install_tickets_internal(items, selected, NULL, NULL, "安装所选凭据?", false);
+    action_install_tickets_internal(items, selected, NULL, NULL, "安装所选应用引导?", false);
 }
 
 void action_install_ticket_delete(linked_list* items, list_item* selected) {
-    action_install_tickets_internal(items, selected, NULL, NULL, "安装并删除所选凭据?", true);
+    action_install_tickets_internal(items, selected, NULL, NULL, "安装并删除所选应用引导?", true);
 }
 
 void action_install_tickets(linked_list* items, list_item* selected, bool (*filter)(void* data, const char* name, u32 attributes), void* filterData) {
-    action_install_tickets_internal(items, selected, filter, filterData, "安装当前文件夹的所有凭据?", false);
+    action_install_tickets_internal(items, selected, filter, filterData, "安装当前文件夹的所有应用引导?", false);
 }
 
 void action_install_tickets_delete(linked_list* items, list_item* selected, bool (*filter)(void* data, const char* name, u32 attributes), void* filterData) {
-    action_install_tickets_internal(items, selected, filter, filterData, "安装并删除当前文件夹的所有凭据?", true);
+    action_install_tickets_internal(items, selected, filter, filterData, "安装并删除当前文件夹的所有应用引导?", true);
 }
