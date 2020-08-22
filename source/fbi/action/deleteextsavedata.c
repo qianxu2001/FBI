@@ -27,7 +27,7 @@ static void action_delete_ext_save_data_update(ui_view* view, void* data, float*
     info_destroy(view);
 
     if(R_FAILED(res)) {
-        error_display_res(info, task_draw_ext_save_data_info, res, "无法删除额外数据.");
+        error_display_res(info, task_draw_ext_save_data_info, res, "无法删除追加数据.");
     } else {
         linked_list_remove(deleteData->items, deleteData->selected);
         task_free_ext_save_data(deleteData->selected);
@@ -49,7 +49,7 @@ static void action_delete_ext_save_data_onresponse(ui_view* view, void* data, u3
 void action_delete_ext_save_data(linked_list* items, list_item* selected) {
     delete_ext_save_data_data* data = (delete_ext_save_data_data*) calloc(1, sizeof(delete_ext_save_data_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配删除额外数据的数据.");
+        error_display(NULL, NULL, "无法分配删除追加数据的数据.");
 
         return;
     }
@@ -57,5 +57,5 @@ void action_delete_ext_save_data(linked_list* items, list_item* selected) {
     data->items = items;
     data->selected = selected;
 
-    prompt_display_yes_no("确认", "删除所选额外数据?", COLOR_TEXT, data, action_delete_ext_save_data_draw_top, action_delete_ext_save_data_onresponse);
+    prompt_display_yes_no("确认", "删除所选追加数据?", COLOR_TEXT, data, action_delete_ext_save_data_draw_top, action_delete_ext_save_data_onresponse);
 }
