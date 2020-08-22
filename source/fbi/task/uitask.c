@@ -67,7 +67,7 @@ void task_draw_ext_save_data_info(ui_view* view, void* data, float x1, float y1,
     char infoText[512];
 
     snprintf(infoText, sizeof(infoText),
-             "额外数据 ID: %016llX\n"
+             "追加数据 ID: %016llX\n"
                      "共享: %s",
              info->extSaveDataId,
              info->shared ? "是" : "否");
