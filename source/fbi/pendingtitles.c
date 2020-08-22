@@ -109,14 +109,14 @@ static void pendingtitles_update(ui_view* view, void* data, linked_list* items, 
         listData->populateData.items = items;
         Result res = task_populate_pending_titles(&listData->populateData);
         if(R_FAILED(res)) {
-            error_display_res(NULL, NULL, res, "无法启动未完成的应用列表填充.");
+            error_display_res(NULL, NULL, res, "无法初始化未完成的应用目录结构.");
         }
 
         listData->populated = true;
     }
 
     if(listData->populateData.finished && R_FAILED(listData->populateData.result)) {
-        error_display_res(NULL, NULL, listData->populateData.result, "无法填充未完成的应用列表.");
+        error_display_res(NULL, NULL, listData->populateData.result, "无法列举未完成的应用目录.");
 
         listData->populateData.result = 0;
     }

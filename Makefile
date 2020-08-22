@@ -21,8 +21,8 @@ VERSION_MAJOR := $(word 1, $(VERSION_PARTS))
 VERSION_MINOR := $(word 2, $(VERSION_PARTS))
 VERSION_MICRO := $(word 3, $(VERSION_PARTS))
 
-DESCRIPTION := Open source title manager.
-AUTHOR := Steveice10
+DESCRIPTION := 3DS开源应用管理器.
+AUTHOR := Steveice10 qianxu2001+Rintim
 
 PRODUCT_CODE := CTR-P-CFBI
 UNIQUE_ID := 0xF8001
