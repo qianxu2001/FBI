@@ -69,7 +69,7 @@ static void extsavedata_action_update(ui_view* view, void* data, linked_list* it
 static void extsavedata_action_open(linked_list* items, list_item* selected) {
     extsavedata_action_data* data = (extsavedata_action_data*) calloc(1, sizeof(extsavedata_action_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配额外数据操作的数据.");
+        error_display(NULL, NULL, "无法分配追加数据操作的数据.");
 
         return;
     }
@@ -77,7 +77,7 @@ static void extsavedata_action_open(linked_list* items, list_item* selected) {
     data->items = items;
     data->selected = selected;
 
-    list_display("额外数据操作", "A: 选择, B: 返回", data, extsavedata_action_update, extsavedata_action_draw_top);
+    list_display("追加数据操作", "A: 选择, B: 返回", data, extsavedata_action_update, extsavedata_action_draw_top);
 }
 
 static void extsavedata_options_add_entry(linked_list* items, const char* name, bool* val) {
@@ -188,14 +188,14 @@ static void extsavedata_update(ui_view* view, void* data, linked_list* items, li
         listData->populateData.items = items;
         Result res = task_populate_ext_save_data(&listData->populateData);
         if(R_FAILED(res)) {
-            error_display_res(NULL, NULL, res, "无法启动额外数据列表填充.");
+            error_display_res(NULL, NULL, res, "无法启动追加数据列表填充.");
         }
 
         listData->populated = true;
     }
 
     if(listData->populateData.finished && R_FAILED(listData->populateData.result)) {
-        error_display_res(NULL, NULL, listData->populateData.result, "无法填充额外数据列表.");
+        error_display_res(NULL, NULL, listData->populateData.result, "无法填充追加数据列表.");
 
         listData->populateData.result = 0;
     }
@@ -255,7 +255,7 @@ static int extsavedata_compare(void* data, const void* p1, const void* p2) {
 void extsavedata_open() {
     extsavedata_data* data = (extsavedata_data*) calloc(1, sizeof(extsavedata_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配额外数据的数据.");
+        error_display(NULL, NULL, "无法分配追加数据的数据.");
 
         return;
     }
@@ -271,5 +271,5 @@ void extsavedata_open() {
     data->sortById = false;
     data->sortByName = true;
 
-    list_display("额外数据", "A: 选择, B: 返回, X: 刷新, SELECT: 选项", data, extsavedata_update, extsavedata_draw_top);
+    list_display("追加数据", "A: 选择, B: 返回, X: 刷新, SELECT: 选项", data, extsavedata_update, extsavedata_draw_top);
 }
