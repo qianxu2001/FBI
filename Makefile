@@ -15,7 +15,7 @@ EXTRA_OUTPUT_FILES := servefiles
 
 BUILD_FLAGS := -Wno-format-truncation
 
-VERSION_PARTS := $(subst ., ,$(shell git describe --tags --abbrev=0))
+VERSION_PARTS := $(subst ., ,2.6.0)
 
 VERSION_MAJOR := $(word 1, $(VERSION_PARTS))
 VERSION_MINOR := $(word 2, $(VERSION_PARTS))
