@@ -754,7 +754,7 @@ ui_view* error_display_res(void* data, void (*drawTop)(ui_view* view, void* data
     int module = R_MODULE(result);
     int description = R_DESCRIPTION(result);
 
-    snprintf(errorData->fullText, 4096, "%s\错误代码: 0x%08lX\n等级: %s (%d)\n摘要: %s (%d)\n模组: %s (%d)\n描述: %s (%d)", textBuf, result, level_to_string(result), level, summary_to_string(result), summary, module_to_string(result), module, description_to_string(result), description);
+    snprintf(errorData->fullText, 4096, "%s\n错误代码: 0x%08lX\n等级: %s (%d)\n摘要: %s (%d)\n模组: %s (%d)\n描述: %s (%d)", textBuf, result, level_to_string(result), level, summary_to_string(result), summary, module_to_string(result), module, description_to_string(result), description);
 
     return prompt_display_notify("错误", errorData->fullText, COLOR_TEXT, errorData, error_draw_top, error_onresponse);
 }
