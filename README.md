@@ -17,7 +17,7 @@ FBI 是一个开源的 3DS 应用管理器.
 你可以使用 [SharedFontTool](https://github.com/dnasdw/SharedFontTool) 来临时安装简体中文字库, 也可以使用 [3DS 系统简体中文化补丁](https://tieba.baidu.com/p/6802255931) 直接将简体中文字库写入并汉化系统. 如果你的机器为中国神游版, 可直接使用.
 
 最新版安装包二维码
-![QR Code](https://user-images.githubusercontent.com/29033099/90957443-2000d280-e4c0-11ea-99ff-8150a043db72.png)
+![qr_code_fbi.png](https://i.loli.net/2020/08/21/5Lgs23UbyWIRoPk.png)
 
 ---
 
