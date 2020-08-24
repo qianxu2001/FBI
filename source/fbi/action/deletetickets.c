@@ -59,7 +59,7 @@ static Result action_delete_tickets_restore(void* data, u32 index) {
 }
 
 static bool action_delete_tickets_error(void* data, u32 index, Result res, ui_view** errorView) {
-    *errorView = error_display_res(data, action_delete_tickets_draw_top, res, "无法删除应用引导.");
+    *errorView = error_display_res(data, action_delete_tickets_draw_top, res, "无法删除应用引导表.");
     return true;
 }
 
@@ -150,7 +150,7 @@ static void action_delete_tickets_loading_update(ui_view* view, void* data, floa
 
             prompt_display_yes_no("确认", loadingData->message, COLOR_TEXT, loadingData->deleteData, action_delete_tickets_draw_top, action_delete_tickets_onresponse);
         } else {
-            error_display_res(NULL, NULL, loadingData->popData.result, "无法填充应用引导列表.");
+            error_display_res(NULL, NULL, loadingData->popData.result, "无法填充应用引导表列表.");
 
             action_delete_tickets_free_data(loadingData->deleteData);
         }
@@ -163,7 +163,7 @@ static void action_delete_tickets_loading_update(ui_view* view, void* data, floa
         svcSignalEvent(loadingData->popData.cancelEvent);
     }
 
-    snprintf(text, PROGRESS_TEXT_MAX, "正在获取应用引导列表...");
+    snprintf(text, PROGRESS_TEXT_MAX, "正在获取应用引导表列表...");
 }
 
 static void action_delete_tickets_internal(linked_list* items, list_item* selected, const char* message, bool unused) {
@@ -208,7 +208,7 @@ static void action_delete_tickets_internal(linked_list* items, list_item* select
 
         Result listRes = task_populate_tickets(&loadingData->popData);
         if(R_FAILED(listRes)) {
-            error_display_res(NULL, NULL, listRes, "无法启动应用引导列表填充.");
+            error_display_res(NULL, NULL, listRes, "无法启动应用引导表列表填充.");
 
             free(loadingData);
             action_delete_tickets_free_data(data);
@@ -227,9 +227,9 @@ static void action_delete_tickets_internal(linked_list* items, list_item* select
 }
 
 void action_delete_ticket(linked_list* items, list_item* selected) {
-    action_delete_tickets_internal(items, selected, "删除所选应用引导?", false);
+    action_delete_tickets_internal(items, selected, "删除所选应用引导表?", false);
 }
 
 void action_delete_tickets_unused(linked_list* items, list_item* selected) {
-    action_delete_tickets_internal(items, selected, "删除所有未使用的应用引导?", true);
+    action_delete_tickets_internal(items, selected, "删除所有未使用的应用引导表?", true);
 }

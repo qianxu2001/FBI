@@ -71,5 +71,5 @@ void action_delete_title(linked_list* items, list_item* selected) {
 }
 
 void action_delete_title_ticket(linked_list* items, list_item* selected) {
-    action_delete_title_internal(items, selected, "删除所选的应用和应用引导?", true);
+    action_delete_title_internal(items, selected, "删除所选的应用和应用引导表?", true);
 }

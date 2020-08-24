@@ -264,5 +264,5 @@ void action_delete_dir_cias(linked_list* items, list_item* selected) {
 }
 
 void action_delete_dir_tickets(linked_list* items, list_item* selected) {
-    action_delete_internal(items, selected, "删除当前文件夹的所有应用引导?", false, false, false, true);
+    action_delete_internal(items, selected, "删除当前文件夹的所有应用引导表?", false, false, false, true);
 }

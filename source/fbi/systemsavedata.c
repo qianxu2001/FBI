@@ -116,7 +116,7 @@ static void systemsavedata_update(ui_view* view, void* data, linked_list* items,
     }
 
     if(listData->populateData.finished && R_FAILED(listData->populateData.result)) {
-        error_display_res(NULL, NULL, listData->populateData.result, "无法填充系统数据目录.");
+        error_display_res(NULL, NULL, listData->populateData.result, "无法填充系统数据列表.");
 
         listData->populateData.result = 0;
     }

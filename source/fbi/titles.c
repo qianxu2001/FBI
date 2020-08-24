@@ -12,7 +12,7 @@
 
 static list_item launch_title = {"启动应用", COLOR_TEXT, action_launch_title};
 static list_item delete_title = {"删除应用", COLOR_TEXT, action_delete_title};
-static list_item delete_title_ticket = {"删除应用和应用引导", COLOR_TEXT, action_delete_title_ticket};
+static list_item delete_title_ticket = {"删除应用和应用引导表", COLOR_TEXT, action_delete_title_ticket};
 static list_item extract_smdh = {"提取 SMDH", COLOR_TEXT, action_extract_smdh};
 static list_item import_seed = {"导入种子", COLOR_TEXT, action_import_seed};
 static list_item browse_save_data = {"浏览数据", COLOR_TEXT, action_browse_title_save_data};
@@ -238,7 +238,7 @@ static void titles_update(ui_view* view, void* data, linked_list* items, list_it
     }
 
     if(listData->populateData.finished && R_FAILED(listData->populateData.result)) {
-        error_display_res(NULL, NULL, listData->populateData.result, "无法填充应用目录.");
+        error_display_res(NULL, NULL, listData->populateData.result, "无法填充应用列表.");
 
         listData->populateData.result = 0;
     }
