@@ -19,8 +19,8 @@ static list_item delete_file = {"删除", COLOR_TEXT, action_delete_file};
 static list_item install_cia = {"安装安装包", COLOR_TEXT, action_install_cia};
 static list_item install_and_delete_cia = {"安装并删除安装包", COLOR_TEXT, action_install_cia_delete};
 
-static list_item install_ticket = {"安装关联表", COLOR_TEXT, action_install_ticket};
-static list_item install_and_delete_ticket = {"安装并删除关联表", COLOR_TEXT, action_install_ticket_delete};
+static list_item install_ticket = {"安装应用引导", COLOR_TEXT, action_install_ticket};
+static list_item install_and_delete_ticket = {"安装并删除应用引导", COLOR_TEXT, action_install_ticket_delete};
 
 static list_item delete_dir = {"删除", COLOR_TEXT, action_delete_dir};
 static list_item copy_all_contents = {"复制所有项目", COLOR_TEXT, NULL};
@@ -31,9 +31,9 @@ static list_item install_all_cias = {"安装所有安装包", COLOR_TEXT, action
 static list_item install_and_delete_all_cias = {"安装并删除所有安装包", COLOR_TEXT, action_install_cias_delete};
 static list_item delete_all_cias = {"删除安装包", COLOR_TEXT, action_delete_dir_cias};
 
-static list_item install_all_tickets = {"安装所有关联表", COLOR_TEXT, action_install_tickets};
-static list_item install_and_delete_all_tickets = {"安装并删除所有关联表", COLOR_TEXT, action_install_tickets_delete};
-static list_item delete_all_tickets = {"删除所有关联表", COLOR_TEXT, action_delete_dir_tickets};
+static list_item install_all_tickets = {"安装所有应用引导", COLOR_TEXT, action_install_tickets};
+static list_item install_and_delete_all_tickets = {"安装并删除所有应用引导", COLOR_TEXT, action_install_tickets_delete};
+static list_item delete_all_tickets = {"删除所有应用引导", COLOR_TEXT, action_delete_dir_tickets};
 
 typedef struct {
     populate_files_data populateData;
@@ -242,7 +242,7 @@ static void files_options_update(ui_view* view, void* data, linked_list* items, 
         files_options_add_entry(items, "显示文件夹", &listData->showDirectories);
         files_options_add_entry(items, "显示文件", &listData->showFiles);
         files_options_add_entry(items, "显示安装包", &listData->showCias);
-        files_options_add_entry(items, "显示关联表", &listData->showTickets);
+        files_options_add_entry(items, "显示应用引导", &listData->showTickets);
     }
 }
 
@@ -270,7 +270,7 @@ static void files_repopulate(files_data* listData, linked_list* items) {
 
     Result res = task_populate_files(&listData->populateData);
     if(R_FAILED(res)) {
-        error_display_res(NULL, NULL, res, "无法初始化文件目录结构.");
+        error_display_res(NULL, NULL, res, "无法启动文件列表填充.");
     }
 
     listData->populated = true;
@@ -360,7 +360,7 @@ static void files_update(ui_view* view, void* data, linked_list* items, list_ite
     }
 
     if(listData->populateData.finished && R_FAILED(listData->populateData.result)) {
-        error_display_res(NULL, NULL, listData->populateData.result, "无法列举文件目录.");
+        error_display_res(NULL, NULL, listData->populateData.result, "无法填充文件列表.");
 
         listData->populateData.result = 0;
     }
@@ -430,7 +430,7 @@ static void files_open_nand_warning_onresponse(ui_view* view, void* data, u32 re
 }
 
 void files_open_nand_warning(FS_ArchiveID archive) {
-    prompt_display_yes_no("确认", "修改 NAND 是危险的,\n这可能导致系统无法正常运行,\n请您确保自己知道正在做什么.\n\n是否继续?", COLOR_TEXT, (void*) archive, NULL, files_open_nand_warning_onresponse);
+    prompt_display_yes_no("确认", "修改 NAND 是危险的,\n这可能导致系统无法正常运行,\n请您确保自己知道正在做什么.\n\n继续?", COLOR_TEXT, (void*) archive, NULL, files_open_nand_warning_onresponse);
 }
 
 void files_open_sd() {

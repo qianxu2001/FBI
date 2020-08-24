@@ -188,14 +188,14 @@ static void extsavedata_update(ui_view* view, void* data, linked_list* items, li
         listData->populateData.items = items;
         Result res = task_populate_ext_save_data(&listData->populateData);
         if(R_FAILED(res)) {
-            error_display_res(NULL, NULL, res, "无法初始化追加数据目录结构.");
+            error_display_res(NULL, NULL, res, "无法启动追加数据列表填充.");
         }
 
         listData->populated = true;
     }
 
     if(listData->populateData.finished && R_FAILED(listData->populateData.result)) {
-        error_display_res(NULL, NULL, listData->populateData.result, "无法列举追加数据目录.");
+        error_display_res(NULL, NULL, listData->populateData.result, "无法填充追加数据列表.");
 
         listData->populateData.result = 0;
     }
