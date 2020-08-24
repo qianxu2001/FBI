@@ -25,7 +25,7 @@ static FILE* resources_open_file(const char* path) {
 static void resources_load_texture(u32 id, const char* name) {
     FILE* fd = resources_open_file(name);
     if(fd == NULL) {
-        error_panic("无法打开材质 \"%s\": %s\n", name, strerror(errno));
+        error_panic("无法打开纹理 \"%s\": %s\n", name, strerror(errno));
         return;
     }
 
