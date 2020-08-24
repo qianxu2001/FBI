@@ -307,7 +307,7 @@ void action_install_url(const char* confirmMessage, const char* urls, const char
                         void (*drawTop)(ui_view* view, void* data, float x1, float y1, float x2, float y2, u32 index)) {
     install_url_data* data = (install_url_data*) calloc(1, sizeof(install_url_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法启动链接安装的数据.");
+        error_display(NULL, NULL, "无法分配链接安装的数据.");
 
         return;
     }

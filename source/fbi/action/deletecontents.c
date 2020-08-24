@@ -182,7 +182,7 @@ static void action_delete_loading_update(ui_view* view, void* data, float* progr
 static void action_delete_internal(linked_list* items, list_item* selected, const char* message, bool recursive, bool includeBase, bool ciasOnly, bool ticketsOnly) {
     delete_data* data = (delete_data*) calloc(1, sizeof(delete_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配删除数据.");
+        error_display(NULL, NULL, "无法分配删除的数据.");
 
         return;
     }
@@ -217,7 +217,7 @@ static void action_delete_internal(linked_list* items, list_item* selected, cons
 
     delete_loading_data* loadingData = (delete_loading_data*) calloc(1, sizeof(delete_loading_data));
     if(loadingData == NULL) {
-        error_display(NULL, NULL, "无法分配加载数据.");
+        error_display(NULL, NULL, "无法分配加载的数据.");
 
         action_delete_free_data(data);
         return;

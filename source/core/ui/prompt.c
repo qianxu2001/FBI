@@ -158,7 +158,7 @@ ui_view* prompt_display_multi_choice(const char* name, const char* text, u32 col
                                                                                                                                                           void (*onResponse)(ui_view* view, void* data, u32 response)) {
     prompt_data* promptData = (prompt_data*) calloc(1, sizeof(prompt_data));
     if(promptData == NULL) {
-        error_display(NULL, NULL, "无法分配提示数据.");
+        error_display(NULL, NULL, "无法分配提示的数据.");
 
         return NULL;
     }

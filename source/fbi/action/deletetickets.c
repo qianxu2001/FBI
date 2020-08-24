@@ -169,7 +169,7 @@ static void action_delete_tickets_loading_update(ui_view* view, void* data, floa
 static void action_delete_tickets_internal(linked_list* items, list_item* selected, const char* message, bool unused) {
     delete_tickets_data* data = (delete_tickets_data*) calloc(1, sizeof(delete_tickets_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配删除数据.");
+        error_display(NULL, NULL, "无法分配删除的数据.");
 
         return;
     }
@@ -195,7 +195,7 @@ static void action_delete_tickets_internal(linked_list* items, list_item* select
     if(unused) {
         delete_tickets_loading_data* loadingData = (delete_tickets_loading_data*) calloc(1, sizeof(delete_tickets_loading_data));
         if(loadingData == NULL) {
-            error_display(NULL, NULL, "无法分配加载数据.");
+            error_display(NULL, NULL, "无法分配加载的数据.");
 
             action_delete_tickets_free_data(data);
             return;

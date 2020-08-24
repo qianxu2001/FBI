@@ -346,7 +346,7 @@ static void action_install_cias_internal(linked_list* items, list_item* selected
 
     install_cias_loading_data* loadingData = (install_cias_loading_data*) calloc(1, sizeof(install_cias_loading_data));
     if(loadingData == NULL) {
-        error_display(NULL, NULL, "无法分配加载数据.");
+        error_display(NULL, NULL, "无法分配加载的数据.");
 
         action_install_cias_free_data(data);
         return;

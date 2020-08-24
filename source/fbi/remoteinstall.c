@@ -160,7 +160,7 @@ static void remoteinstall_network_update(ui_view* view, void* data, float* progr
 
         char* urls = (char*) calloc(size + 1, sizeof(char));
         if(urls == NULL) {
-            error_display(NULL, NULL, "无法分配链接缓存.");
+            error_display(NULL, NULL, "无法分配链接的缓存.");
 
             remoteinstall_network_close_client(data);
             return;

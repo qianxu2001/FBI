@@ -312,7 +312,7 @@ static int titles_compare(void* data, const void* p1, const void* p2) {
 void titles_open() {
     titles_data* data = (titles_data*) calloc(1, sizeof(titles_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配应用数据.");
+        error_display(NULL, NULL, "无法分配应用的数据.");
 
         return;
     }

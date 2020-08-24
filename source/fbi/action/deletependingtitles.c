@@ -189,7 +189,7 @@ void action_delete_pending_titles(linked_list* items, list_item* selected, const
     if(all) {
         delete_pending_titles_loading_data* loadingData = (delete_pending_titles_loading_data*) calloc(1, sizeof(delete_pending_titles_loading_data));
         if(loadingData == NULL) {
-            error_display(NULL, NULL, "无法分配加载数据.");
+            error_display(NULL, NULL, "无法分配加载的数据.");
 
             action_delete_pending_titles_free_data(data);
             return;

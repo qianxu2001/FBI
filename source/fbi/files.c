@@ -369,7 +369,7 @@ static void files_update(ui_view* view, void* data, linked_list* items, list_ite
 void files_open(FS_ArchiveID archiveId, FS_Path archivePath) {
     files_data* data = (files_data*) calloc(1, sizeof(files_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配文件数据.");
+        error_display(NULL, NULL, "无法分配文件的数据.");
 
         return;
     }
@@ -397,7 +397,7 @@ void files_open(FS_ArchiveID archiveId, FS_Path archivePath) {
     if(archivePath.data != NULL) {
         data->archivePath.data = calloc(1, data->archivePath.size);
         if(data->archivePath.data == NULL) {
-            error_display(NULL, NULL, "无法分配文件数据.");
+            error_display(NULL, NULL, "无法分配文件的数据.");
 
             files_free_data(data);
             return;

@@ -78,7 +78,7 @@ static void action_rename_onresponse(ui_view* view, void* data, SwkbdButton butt
 void action_rename(linked_list* items, list_item* selected) {
     rename_data* data = (rename_data*) calloc(1, sizeof(rename_data));
     if(data == NULL) {
-        error_display(NULL, NULL, "无法分配重命名数据.");
+        error_display(NULL, NULL, "无法分配重命名的数据.");
 
         return;
     }

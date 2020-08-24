@@ -374,7 +374,7 @@ void action_paste_contents(linked_list* items, list_item* selected) {
 
     paste_contents_loading_data* loadingData = (paste_contents_loading_data*) calloc(1, sizeof(paste_contents_loading_data));
     if(loadingData == NULL) {
-        error_display(NULL, NULL, "无法分配加载数据.");
+        error_display(NULL, NULL, "无法分配加载的数据.");
 
         action_paste_contents_free_data(data);
         return;

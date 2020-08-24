@@ -293,7 +293,7 @@ static void action_install_tickets_internal(linked_list* items, list_item* selec
 
     install_tickets_loading_data* loadingData = (install_tickets_loading_data*) calloc(1, sizeof(install_tickets_loading_data));
     if(loadingData == NULL) {
-        error_display(NULL, NULL, "无法分配加载数据.");
+        error_display(NULL, NULL, "无法分配加载的数据.");
 
         action_install_tickets_free_data(data);
         return;
