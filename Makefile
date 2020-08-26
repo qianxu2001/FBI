@@ -21,7 +21,7 @@ VERSION_MAJOR := $(word 1, $(VERSION_PARTS))
 VERSION_MINOR := $(word 2, $(VERSION_PARTS))
 VERSION_MICRO := $(word 3, $(VERSION_PARTS))
 
-DESCRIPTION := 3DS 应用管理器.
+DESCRIPTION := 一个 3DS 的应用管理器.
 AUTHOR := Steveice10 qianxu2001 Rintim
 
 PRODUCT_CODE := CTR-P-CFBI
