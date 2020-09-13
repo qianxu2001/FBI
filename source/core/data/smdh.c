@@ -13,9 +13,9 @@ static const char* smdh_region_strings[SMDH_NUM_REGIONS] = {
         "美国",
         "欧洲",
         "澳大利亚",
-        "中国神游",
+        "中国",
         "韩国",
-        "中国台湾"
+        "台湾"
 };
 
 void smdh_region_to_string(char* out, u32 region, size_t size) {
@@ -26,7 +26,7 @@ void smdh_region_to_string(char* out, u32 region, size_t size) {
     if(region == 0) {
         snprintf(out, size, "未知");
     } else if((region & SMDH_ALL_REGIONS) == SMDH_ALL_REGIONS) {
-        snprintf(out, size, "全区");
+        snprintf(out, size, "无");
     } else {
         size_t pos = 0;
 
